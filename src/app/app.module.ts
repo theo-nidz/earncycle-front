@@ -1,18 +1,20 @@
+import { LayoutNomenuModule } from './layouts/layout-nomenu/layout-nomenu.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IndexComponent } from './index/index.component';
+import { LayoutMenuModule } from './layouts/layout-menu/layout-menu.module';
+
+
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    IndexComponent
-  ],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LayoutMenuModule,
+    LayoutNomenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
