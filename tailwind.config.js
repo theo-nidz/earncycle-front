@@ -6,7 +6,8 @@ module.exports = {
       gradient:'#81E770;',
       hover:'#086375;',
       dark:'#000000',
-      grey:'#BEBDBD'
+      grey:'#BEBDBD',
+      light:'#FFFFFF'
     },
     extend: {},
   },

@@ -6,6 +6,8 @@ import { ErrorComponent } from './pages/error/error.component';
 import { IndexComponent } from './pages/index/index.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { TosComponent } from './pages/tos/tos.component';
 import { VouchersComponent } from './pages/vouchers/vouchers.component';
 
 
@@ -46,6 +48,14 @@ const routes: Routes = [
       {
         path:'login',
         component:LoginComponent
+      },
+      {
+        path:'register',
+        component:RegisterComponent
+      },
+      {
+        path:'tos',
+        component:TosComponent
       }
     ]
   }

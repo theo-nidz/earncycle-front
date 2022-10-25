@@ -1,6 +1,7 @@
+
 <header>
   <div class="flex items-center justify-between pt-5 pl-3 pr-3">
-    <a href="/"><img  class="w-7 h-7"  src="assets/arrowBack.svg" alt=""></a>
+    <a href="/login"><img  class="w-7 h-7"  src="assets/arrowBack.svg" alt=""></a>
     <p>Inscription</p>
     <img src="assets/verticalDots.svg" alt="">
   </div>
@@ -17,8 +18,17 @@
     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mot de passe</label>
     <input type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
   </div>
+  <div class="mb-6">
+    <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Validez votre mot de passe</label>
+    <input type="password" id="repeat-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+  </div>
+  <div class="flex items-start mb-6">
+    <div class="flex items-center mb-4">
+      <input checked id="checkbox-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+      <label for="checkbox-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+  </div>
 
-
+  </div>
   <button type="submit" class="rounded  py-2 bg-primary text-light ">S'inscrire</button>
 </form>
 
