@@ -1,5 +1,14 @@
-<header>
-  <div class="flex items-center justify-center pt-5">
+<header class="z-50">
+  <div class="flex items-center justify-center p-2">
     <p>Index</p>
   </div>
 </header>
+
+
+  <div class="w-screen h-screen z-10"
+  leaflet
+  [leafletOptions]="options"
+  *ngIf="options">
+  </div>
+
+
