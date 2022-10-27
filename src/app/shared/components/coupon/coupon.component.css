@@ -1,5 +1,4 @@
 
-
 .containerCoupon {
   position: relative;
   display: flex;
@@ -9,6 +8,7 @@
   background: #ECECEC;
   max-width: 1000px;
 }
+
 .profilePicture {
   width: 100px;
   height: 100px;
@@ -18,12 +18,8 @@
   top: 20px;
   right: 30px;
 }
-/*.containerCoupon h1 {*/
-/*  margin-top: 2rem;*/
-/*  font-size: 2rem;*/
-/*  font-weight: bold;*/
-/*}*/
-.containerCoupon ul {
+
+.containerCoupon h2 {
   display: flex;
   align-items: center;
   gap: 4rem;
@@ -31,23 +27,31 @@
   font-size: 1.5rem;
   justify-content: center;
 }
-.containerCoupon li {
+
+.containerCoupon h2 {
   background: white;
   padding: 0.5rem;
   border-radius: 5px;
   color: #25D0B6;
 }
+
+.titleCoupon {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
 .containerCoupon li:hover {
   background: #086375;
   color: white;
 }
+
 .couponCardContainer {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 2rem;
   gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .couponCard {
   background: white;
@@ -55,6 +59,9 @@
   height: 350px;
   border-radius: 5px;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
@@ -64,11 +71,13 @@
   object-fit: cover;
   border-radius: 5px 5px 0 0;
 }
+
 .couponCard h2 {
   margin-top: 1rem;
   font-weight: bold;
   font-size: 1.5rem;
 }
+
 .btnCoupon {
   margin-top: 2rem;
   color: white;
@@ -78,6 +87,25 @@
   font-weight: bold;
   width: 30%;
 }
+
 .btnCoupon:hover {
   background: #086375;
+}
+
+
+@media (max-width: 600px) {
+  .couponCardContainer {
+    display: block;
+  }
+
+  .containerCoupon {
+    align-items: center;;
+  }
+
+  .containerCoupon h2 {
+    font-size: 25px;
+  }
+  .couponCard {
+    height: 380px;
+  }
 }

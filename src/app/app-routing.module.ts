@@ -12,6 +12,7 @@ import { VouchersComponent } from './pages/vouchers/vouchers.component';
 import {InfosComponent} from "./shared/components/infos/infos.component";
 import {CouponComponent} from "./shared/components/coupon/coupon.component";
 import {CouponDetailsComponent} from "./shared/components/coupon-details/coupon-details.component";
+import {IntroComponent} from "./shared/components/intro/intro.component";
 
 
 
@@ -71,7 +72,11 @@ const routes: Routes = [
       {
         path:'tos',
         component:TosComponent
-      }
+      },
+      {
+        path:'intro',
+        component:IntroComponent
+      },
     ]
   }
 
