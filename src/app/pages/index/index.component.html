@@ -1,14 +1,18 @@
 <header class="z-50">
   <div class="flex items-center justify-center p-2">
     <p>Index</p>
+    <p>{{lat}} , {{long}}</p>
   </div>
 </header>
 
+<div class="w-screen h-screen z-10"
+leaflet
+[leafletOptions]="options"
+[leafletLayers]="layers"
+[(leafletCenter)]="center"
+[(leafletZoom)]="zoom"
+*ngIf="options">
+</div>
 
-  <div class="w-screen h-screen z-10"
-  leaflet
-  [leafletOptions]="options"
-  *ngIf="options">
-  </div>
 
 
