@@ -9,6 +9,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { TosComponent } from './pages/tos/tos.component';
 import { VouchersComponent } from './pages/vouchers/vouchers.component';
+import {InfosComponent} from "./shared/components/infos/infos.component";
 
 
 
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path:'error',
         component:ErrorComponent
+      },
+      {
+        path:'infos',
+        component: InfosComponent
       },
 
     ]

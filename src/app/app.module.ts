@@ -7,10 +7,6 @@ import { AppComponent } from './app.component';
 import { LayoutMenuModule } from './layouts/layout-menu/layout-menu.module';
 import { LayoutNomenuModule } from './layouts/layout-nomenu/layout-nomenu.module';
 
-
-
-
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
