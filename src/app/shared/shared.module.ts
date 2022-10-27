@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuComponent } from './components/menu/menu.component';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 @NgModule({
   declarations: [
-    MenuComponent,
+
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LeafletModule
   ],
   exports:[
-      MenuComponent
+
   ]
 })
 export class SharedModule { }

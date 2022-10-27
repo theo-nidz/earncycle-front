@@ -7,6 +7,7 @@ import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 import { VouchersComponent } from 'src/app/pages/vouchers/vouchers.component';
 import { RouterModule } from '@angular/router';
 import { ErrorComponent } from 'src/app/pages/error/error.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
@@ -17,11 +18,13 @@ import { ErrorComponent } from 'src/app/pages/error/error.component';
     ProfileComponent,
     ErrorComponent,
     VouchersComponent,
+
   ],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    LeafletModule
   ]
 })
 export class LayoutMenuModule { }
