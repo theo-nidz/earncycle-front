@@ -11,6 +11,9 @@ import { ResetpwdComponent } from './pages/resetpwd/resetpwd.component';
 import { TosComponent } from './pages/tos/tos.component';
 import { VouchersComponent } from './pages/vouchers/vouchers.component';
 import {InfosComponent} from "./shared/components/infos/infos.component";
+import {CouponComponent} from "./shared/components/coupon/coupon.component";
+import {CouponDetailsComponent} from "./shared/components/coupon-details/coupon-details.component";
+import {IntroComponent} from "./shared/components/intro/intro.component";
 
 
 
@@ -23,6 +26,10 @@ const routes: Routes = [
     children:[
       {
         path:'',
+        component:IndexComponent
+      },
+      {
+        path:'index',
         component:IndexComponent
       },
       {
@@ -40,6 +47,14 @@ const routes: Routes = [
       {
         path:'infos',
         component: InfosComponent
+      },
+      {
+        path:'coupon',
+        component: CouponComponent
+      },
+      {
+        path:'coupon-details',
+        component: CouponDetailsComponent
       },
 
     ]
@@ -64,8 +79,14 @@ const routes: Routes = [
         component:TosComponent
       },
       {
+
         path:'resetpwd',
         component:ResetpwdComponent
+      },
+      {
+        path:'intro',
+        component:IntroComponent
+
       },
     ]
   }

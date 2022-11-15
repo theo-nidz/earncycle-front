@@ -9,27 +9,156 @@
 <div class="container mx-auto">
 
 
-<form class="flex flex-col w-8/12 mx-auto pt-5">
+
+<form 
+*ngIf="!isSuccessful"
+name="form"
+(ngSubmit)="f.form.valid && onSubmit()"
+#f="ngForm"
+novalidate
+class="flex flex-col w-8/12 mx-auto pt-20">
+
   <div class="mb-6">
     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-    <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="email@earncycle.com" required="">
+    <input 
+    class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          #email="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+    type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="email@earncycle.com" required="">
+    <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+      <div *ngIf="email.errors['required']">Email est requit !</div>
+    </div>
   </div>
   <div class="mb-6">
     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mot de passe</label>
-    <input type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <input 
+    name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="8"
+          #password="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+    type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+      <div *ngIf="password.errors['required']">Mots de passe obligatoire</div>
+      <div *ngIf="password.errors['minlength']">
+        Le mots de passe doit être de 8 caractères minimum
+      </div>
+    </div>
   </div>
   <div class="mb-6">
     <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Validez votre mot de passe</label>
-    <input type="password" id="repeat-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <input 
+    name="password"
+        [(ngModel)]="form.confirmpassword"
+        required
+        minlength="8"
+        #confirmpassword="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && confirmpassword.errors }"
+    type="password" id="repeat-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <div class="invalid-feedback" *ngIf="confirmpassword.errors && f.submitted">
+      <div *ngIf="confirmpassword.errors['required']">Mots de passe obligatoire</div>
+      <div *ngIf="confirmpassword.errors['minlength']">
+        Le mots de passe doit être de 8 caractères minimum
+      </div>
+    </div>
   </div>
+
+  <div class="mb-6">
+    <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Surnom</label>
+    <input 
+    name="nickname"
+          [(ngModel)]="form.nickname"
+          required
+          #nickname="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && nickname.errors }"
+    type="text" id="nickname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <div class="invalid-feedback" *ngIf="nickname.errors && f.submitted">
+      <div *ngIf="nickname.errors['required']">Surnom obligatoire</div>
+    </div>
+  </div>
+  <div class="mb-6">
+    <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nom de famille</label>
+    <input 
+    name="lname"
+          [(ngModel)]="form.lname"
+          required
+          #lname="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && lname.errors }"
+    type="text" id="lname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <div class="invalid-feedback" *ngIf="lname.errors && f.submitted">
+      <div *ngIf="lname.errors['required']">Nom de famille obligatoire</div>
+    </div>
+  </div>
+  <div class="mb-6">
+    <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Prénom</label>
+    <input 
+    name="fname"
+          [(ngModel)]="form.fname"
+          required
+          #fname="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && fname.errors }"
+    type="text" id="fname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <div class="invalid-feedback" *ngIf="fname.errors && f.submitted">
+      <div *ngIf="fname.errors['required']">Prénom obligatoire</div>
+    </div>
+  </div>
+  <div class="mb-6">
+    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Numéro de téléphone</label>
+    <input 
+    name="phone"
+          [(ngModel)]="form.phone"
+          required
+          #phone="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && phone.errors }"
+    type="text" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <div class="invalid-feedback" *ngIf="phone.errors && f.submitted">
+      <div *ngIf="phone.errors['required']">Numéro de téléphone obligatoire</div>
+    </div>
+  </div>
+  <div class="mb-6">
+    <label for="adress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Adresse</label>
+    <input 
+    name="adress"
+          [(ngModel)]="form.adress"
+          required
+          #adress="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && adress.errors }"
+    type="text" id="adress" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
+    <div class="invalid-feedback" *ngIf="adress.errors && f.submitted">
+      <div *ngIf="adress.errors['required']">Adresse obligatoire</div>
+    </div>
+  </div>
+  
+
   <div class="flex items-start mb-6">
     <div class="flex items-center mb-4">
-      <input checked id="checkbox-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+      <input 
+      name="terms"
+          [(ngModel)]="form.terms"
+          required
+          #terms="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && terms.errors }"
+      checked id="checkbox-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
       <label for="checkbox-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+      <div class="invalid-feedback" *ngIf="terms.errors && f.submitted">
+        <div *ngIf="terms.errors['required']">Veuillez Validez les conditions général</div>
+      </div>
   </div>
 
   </div>
   <button type="submit" class="rounded  py-2 bg-primary text-light ">S'inscrire</button>
+  <!-- TODO set style -->
+  <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+    Enregistrement échoué !<br />{{ errorMessage }}
+  </div>
 </form>
+
+<div class="alert alert-success" *ngIf="isSuccessful">
+  Vous êtes inscrit !<br />Vous pouvez vous connecter.
+</div>
 
 </div>

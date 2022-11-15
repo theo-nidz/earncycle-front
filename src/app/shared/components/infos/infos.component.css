@@ -43,3 +43,12 @@
   align-items: center;
 }
 /*test*/
+
+@media (max-width: 600px) {
+  .wrapCard {
+    display: block;
+  }
+  .infosContainer {
+    width: inherit;
+  }
+}
