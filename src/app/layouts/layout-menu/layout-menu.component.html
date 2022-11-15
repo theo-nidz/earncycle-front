@@ -1,19 +1,19 @@
 <router-outlet></router-outlet>
 
 <footer class=z-50>
-  <nav class="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 bottom-0 left-0 border-t">
-    <div class="container flex flex-wrap justify-center items-center mx-auto gap-10">
-    <a href="/" class="flex items-center">
-        <img src="assets/homeIcon.svg" class="h-8 sm:h-10" alt="Flowbite Logo">
+  <nav class="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 bottom-0 left-0">
+    <div class="container flex flex-wrap justify-center items-center mx-auto gap-12">
+   <a  class="flex items-center">
+      <i [routerLink]="['/index']" [routerLinkActive]="['active']" class="fa-solid fa-map-location-dot fa-2xl"></i>
+<!--        <img src="assets/homeIcon.svg" class="h-8 sm:h-10" alt="Flowbite Logo">-->
     </a>
-    <a href="/coupon" class="flex items-center">
-      <img src="assets/coupon.svg" class="h-10 sm:h-12" alt="Flowbite Logo">
+    <a routerLink="/coupon" class="flex items-center">
+      <i [routerLink]="['coupon']" [routerLinkActive]="['active']" class="fa-sharp fa-solid fa-ticket fa-2xl"></i>
+<!--      <img [routerLink]="['coupon']" [routerLinkActive]="['active']" src="assets/coupon.svg" class="h-10 sm:h-12" alt="Flowbite Logo">-->
   </a>
-  <a href="/" class="flex items-center">
-    <img src="assets/homeIcon.svg" class=" h-8 sm:h-10" alt="Flowbite Logo">
-</a>
-<a href="/profile" class="flex items-center">
-  <img src="assets/profile.svg" class=" h-8 sm:h-10" alt="Flowbite Logo">
+<a class="flex items-center">
+  <i  [routerLink]="['profile']" [routerLinkActive]="['active']" class="fa-solid fa-user fa-2xl"></i>
+<!--  <img  [routerLink]="['profile']" [routerLinkActive]="['active']" src="assets/profile.svg" class=" h-8 sm:h-10" alt="Flowbite Logo">-->
 </a>
     </div>
   </nav>

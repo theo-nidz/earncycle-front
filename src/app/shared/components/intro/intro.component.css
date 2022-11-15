@@ -4,9 +4,11 @@
   align-items: center;
   height: 100vh;
   width: 100%;
+  position: relative;
   /*background: linear-gradient(90deg, rgba(129, 231, 112, 1) 0%, rgba(0, 201, 171, 1) 100%);*/
 
 }
+
 .wrap h1 {
   text-transform: uppercase;
   font-size: 4rem;
@@ -20,7 +22,9 @@
   align-items: center;
 }
 .containerTextIntro img {
-  width: 200px;
+  width: 70%;
+  position: absolute;
+  top: 30%;
 }
 .wave {
   position: absolute;
@@ -35,7 +39,7 @@
 
 @media (max-width: 600px) {
   .containerTextIntro img {
-    width: 100px;
+    /*width: 100px;*/
   }
   .wrap h1 {
     font-size: 3rem;
