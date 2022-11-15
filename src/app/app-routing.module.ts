@@ -7,6 +7,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ResetpwdComponent } from './pages/resetpwd/resetpwd.component';
 import { TosComponent } from './pages/tos/tos.component';
 import { VouchersComponent } from './pages/vouchers/vouchers.component';
 import {InfosComponent} from "./shared/components/infos/infos.component";
@@ -61,7 +62,11 @@ const routes: Routes = [
       {
         path:'tos',
         component:TosComponent
-      }
+      },
+      {
+        path:'resetpwd',
+        component:ResetpwdComponent
+      },
     ]
   }
 
