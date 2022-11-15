@@ -1,14 +1,45 @@
-<header class="z-50">
-<!--  <div class="flex items-center justify-center p-2">-->
-<!--    <p>Index</p>-->
-<!--  </div>-->
+
+<header class="z-40 fixed w-full bg-light">
+  <div class="p-2">
+    <p class="text-center">Index</p>
+  </div>
+
 </header>
 
-
-  <div class="w-screen h-screen z-10"
+<div>
+  <div class="w-screen h-screen z-10 relative"
   leaflet
   [leafletOptions]="options"
+  [leafletLayers]="userPosition"
+  [(leafletCenter)]="center"
+  (leafletMapReady)="onMapReady($event)"
+  [(leafletZoom)]="zoom"
+  [leafletMarkerCluster]="[layers]"
+
   *ngIf="options">
   </div>
+  <div class="absolute flex flex-col-reverse right-1 bottom-16 sm:bottom-20 sm:right-3  z-50 gap-1">
+    <button (click)="trackMe()" class=" rounded-full bg-primary relative  w-12 h-12 "><img src="assets/userMarker.png"  class="w-8 h-10 absolute top-1/2 left-1/2"></button>
+    <button (click)="openFilter()" class="rounded-full bg-primary w-12 h-12 relative"><img src="assets/images/index/filter.svg" class="w-10 h-10 absolute top-1/2 left-1/2"></button>
+    <button (click)="routeTo()" class="rounded-full bg-primary w-12 h-12 relative"><img src="assets/images/index/filter.svg" class="w-10 h-10 absolute top-1/2 left-1/2"></button>
+  
+  </div>
+</div>
+
+
+
+<div class="absolute top-1/4 left-0 right-0 bottom-0 bg-light z-50 border border-dark rounded" *ngIf="modalFilter == true">
+<div class="flex justify-end p-3"> <img src="assets/images/global/cancel.svg" class="w-6 h-6" (click)="closeFilter()" /> </div>
+</div>
+
+<div class="absolute w-full h-full top-0 z-50 loader--bg" *ngIf="loading">
+  <div class="loader--loading relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4 before:bg-primary " ><span class="flex flex-col items-center "><img class="animate-spin " src="assets/images/global/loader.png" alt="Loading" draggable="false">  Loading</span></div>
+</div>
+
+
+
+
+
+
 
 
