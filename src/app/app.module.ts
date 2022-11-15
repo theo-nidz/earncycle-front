@@ -9,6 +9,8 @@ import { LayoutNomenuModule } from './layouts/layout-nomenu/layout-nomenu.module
 import {CouponComponent} from "./shared/components/coupon/coupon.component";
 import {CouponDetailsComponent} from "./shared/components/coupon-details/coupon-details.component";
 import {InfosComponent} from "./shared/components/infos/infos.component";
+import { authInterceptorProviders } from './_helper/auth.interceptor';
+import { HttpClientModule } from '@angular/common/http';
 //import {IntroComponent} from "./shared/components/intro/intro.component";
 
 
@@ -22,12 +24,13 @@ import {InfosComponent} from "./shared/components/infos/infos.component";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     LayoutMenuModule,
     LayoutNomenuModule,
     LeafletModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
