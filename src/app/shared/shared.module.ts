@@ -13,7 +13,7 @@ import { IntroComponent } from './components/intro/intro.component';
   ],
   imports: [
     CommonModule,
-    LeafletModule
+    LeafletModule,
   ],
   exports:[
 
