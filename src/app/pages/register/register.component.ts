@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  private router: any;
 
   constructor(private authService: AuthService) { }
 
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const {email, 
+    const {email,
       password,
       confirmpassword,
       lname,
@@ -47,8 +48,8 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = "Les mots de passe doivent être identiques !";
         this.isSignUpFailed = true;
       }else{
-        this.authService.register(email, 
-          password, 
+        this.authService.register(email,
+          password,
           lname,
           fname,
           phone,
@@ -59,6 +60,8 @@ export class RegisterComponent implements OnInit {
             console.log(data);
             this.isSuccessful = true;
             this.isSignUpFailed = false;
+
+            this.router.navigate(['/login']);
           },
           error: err => {
             this.errorMessage = err.error.message;

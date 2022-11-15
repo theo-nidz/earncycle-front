@@ -7,7 +7,8 @@ module.exports = {
       hover:'#086375;',
       dark:'#000000',
       grey:'#BEBDBD',
-      light:'#FFFFFF'
+      light:'#FFFFFF',
+      error: '#e14242'
     },
     extend: {},
   },
