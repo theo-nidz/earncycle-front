@@ -14,3 +14,10 @@ body {
     min-height: 100vh;
   }
 }
+@media (max-width: 425px) {
+
+  .container {
+    max-width: 350px;
+  }
+
+}
