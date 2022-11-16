@@ -76,9 +76,9 @@ export class IndexComponent {
     this.loading = true
     const markerCluster = L.markerClusterGroup()
     this._http.get('http://127.0.0.1:8000/api/rubbishes.json?delete=false').subscribe((res:any)=>{
+      console.log(res)
+        res.forEach((key:any) => {
 
-        res.forEach((key:any,index:any) => {
-          console.log(key)
           let popupInfo = document.createElement('div')
           popupInfo.className='popup--info'
 
@@ -103,22 +103,52 @@ export class IndexComponent {
   }
 
   checkIcon(cat:string){
-    var Icon= this.blueBin
+    var Icon= this.glassBin
     switch(cat){
-      case"Autre": Icon = this.userMarker; break;
-      case"Verre":  Icon = this.userMarker; break;
-      case"Recyclage":  Icon = this.userMarker; break;
-      case"Bois":  Icon = this.userMarker; break;
-      case"Ordures ménagères":  Icon = this.userMarker; break;
-      case"Cartons":  Icon = this.userMarker; break;
-      case"Métal":  Icon = this.userMarker; break;
-      case"Composte": Icon = this.userMarker; break;
-      case"Plastique":  Icon = this.userMarker; break;
-      case"Vêtements": Icon = this.userMarker; break;
+      case"Autre": Icon = this.otherBin; break;
+      case"Verre":  Icon = this.glassBin; break;
+      case"Recyclage":  Icon = this.recycleBin; break;
+      case"Bois":  Icon = this.woodBin; break;
+      case"Ordures ménagères":  Icon = this.wasteBin; break;
+      case"Cartons":  Icon = this.cardboardBin; break;
+      case"Métal":  Icon = this.metalBin; break;
+      case"Composte": Icon = this.compostBin; break;
+      case"Plastique":  Icon = this.plasticBin; break;
+      case"Vêtements": Icon = this.clothesBin; break;
     }
     return Icon
   }
 
+  filter(cat:string){
+    this.loading = true
+    const markerCluster = L.markerClusterGroup()
+    this._http.get('http://127.0.0.1:8000/api/rubbishes?page=1&deleted=false&category=' + cat).subscribe((res:any)=>{
+ 
+      res.forEach((key:any) => {
+        // console.log('FOREACH',key)
+        let popupInfo = document.createElement('div')
+        popupInfo.className='popup--info'
+
+        let btnGo = document.createElement('button');
+        btnGo.className = 'goToBtn';
+        btnGo.append(document.createTextNode('S\'y rendre'))
+        btnGo.onclick = async () => {
+         this.routeTo([key.latitude,key.longitude])
+        }
+        popupInfo.append(
+          document.createTextNode(key.nbStreet + ` `+ key.streetName),
+          document.createElement('br'),
+          document.createTextNode(key.type),
+          document.createElement('br'),
+          btnGo
+          )
+          markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.checkIcon(key.category.name)}).bindPopup(popupInfo));
+      });
+      this.layers=markerCluster
+      this.loading = false
+
+     })
+  }
 
   //MAP LEAFLET PARAMS
   layers = L.markerClusterGroup()
@@ -142,13 +172,59 @@ export class IndexComponent {
   }
 
 //Définir les icons
-blueBin = L.icon({
-  iconUrl: 'assets/bin.svg',
+
+cardboardBin = L.icon({
+  iconUrl: 'assets/images/iconBin/cardboardBin.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+otherBin = L.icon({
+  iconUrl: 'assets/images/iconBin/bin.svg',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+clothesBin = L.icon({
+  iconUrl: 'assets/images/iconBin/clothesBin.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+compostBin = L.icon({
+  iconUrl: 'assets/images/iconBin/compostBin.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+glassBin = L.icon({
+  iconUrl: 'assets/images/iconBin/glassBin.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+metalBin = L.icon({
+  iconUrl: 'assets/images/iconBin/metalBin.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+plasticBin = L.icon({
+  iconUrl: 'assets/images/iconBin/plasticBin.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+recycleBin = L.icon({
+  iconUrl: 'assets/images/iconBin/recycleBin.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+wasteBin = L.icon({
+  iconUrl: 'assets/images/iconBin/wasteBin.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 25],
+})
+woodBin = L.icon({
+  iconUrl: 'assets/images/iconBin/woodBin.png',
   iconSize: [30, 30],
   iconAnchor: [20, 25],
 })
 userMarker = L.icon({
-  iconUrl: 'assets/userMarker.png',
+  iconUrl: 'assets/images/global/userMarker.png',
   iconSize: [30, 30],
   iconAnchor: [20, 25],
 

@@ -17,3 +17,9 @@
   height:40px;
   background-color:red;
 }
+
+
+.filterBar{
+  transition: 1s;
+
+}
