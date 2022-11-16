@@ -1,3 +1,4 @@
+import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -24,7 +25,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     CommonModule,
     SharedModule,
     RouterModule,
-    LeafletModule
+    LeafletModule,
+    LeafletMarkerClusterModule
   ]
 })
 export class LayoutMenuModule { }
