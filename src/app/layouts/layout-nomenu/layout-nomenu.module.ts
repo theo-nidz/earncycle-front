@@ -9,6 +9,7 @@ import { TosComponent } from 'src/app/pages/tos/tos.component';
 import { ResetpwdComponent } from 'src/app/pages/resetpwd/resetpwd.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfosComponent } from 'src/app/pages/infos/infos.component';
 
 
 
@@ -19,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     TosComponent,
     ResetpwdComponent,
-
+    InfosComponent
 
   ],
   imports: [

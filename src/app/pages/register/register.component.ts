@@ -28,7 +28,12 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  isLogged(){
+    console.log(window.localStorage)
+
+  }
   ngOnInit(): void {
+this.isLogged()
   }
 
 

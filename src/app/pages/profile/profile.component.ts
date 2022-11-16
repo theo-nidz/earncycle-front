@@ -2,14 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { UserService } from 'src/app/_services/user.service';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   id: number | undefined;
   user?: any;
+  isMenuOpen = false
+
+  toggleMenu(){
+    this.isMenuOpen= !this.isMenuOpen
+  }
+  logout(){
+    this.tokenStorage.signOut()
+  }
+
   constructor(private tokenStorage: TokenStorageService, private userService: UserService) { }
 
   ngOnInit(): void {
