@@ -20,6 +20,17 @@ export class IndexComponent {
   userCoord= L.latLng(0, 0 )
   rubbishes = {}
   modalFilter= false
+  isRoute=false
+  routing= L.Routing.control({
+    waypoints: [],
+    routeWhileDragging: false,
+    show:false,
+    addWaypoints:false,
+    //@ts-ignore
+    createMarker: function() { return null; },
+    //@ts-ignore
+    draggableWaypoints:false
+  })
 
   //  @ts-ignore
   map : L.Map
@@ -48,16 +59,12 @@ export class IndexComponent {
   }
 
   onMapReady(map: L.Map){
-
     this.map= map
   }
 
-  routeTo() {
-		L.Routing.control({
-			waypoints: [this.userCoord, L.latLng(57.6792, 11.949)],
-			routeWhileDragging: true,
-      show:false,
-		}).addTo(this.map);
+  routeTo(coord:any) {
+    this.isRoute = true
+		this.routing.setWaypoints([this.userCoord, coord])
 	}
 
   //OnInit, set markers from BDD
@@ -67,20 +74,33 @@ export class IndexComponent {
     this._http.get('http://127.0.0.1:8000/api/rubbishes.json?delete=false').subscribe((res:any)=>{
 
         res.forEach((key:any,index:any) => {
-          const popupInfo = `
-          ${key.nbStreet} <br> ${
-            key.nbStreet
-          } <br> <button class="edit">Edit</button>
-          <br> <button class="delete">Delete</button>
-          `;
+
+          let popupInfo = document.createElement('div')
+          popupInfo.className='popup--info'
+
+          let btnGo = document.createElement('button');
+          btnGo.className = 'goToBtn';
+          btnGo.append(document.createTextNode('S\'y rendre'))
+          btnGo.onclick = async () => {
+           this.routeTo([key.latitude,key.longitude])
+          }
+          popupInfo.append(
+            document.createTextNode(key.nbStreet + ` `+ key.streetName),
+            document.createElement('br'),
+            document.createTextNode(key.category),
+            document.createElement('br'),
+            btnGo
+            )
+
           switch  (key.category){
           //Other
           //Recycling
-          case'/api/categories/9': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup(popupInfo)); break ;
+          case'/api/categories/9': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin})
+          .bindPopup(popupInfo)); break ;
           //Clothes
-          case'/api/categories/8': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup("<b>"+ key.nbStreet +' '+ key.streetName+"</b><br>"+ key.city +"<br>Poubelle à Vêtements")); break ;
+          case'/api/categories/8': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup(popupInfo)); break ;
           //Waste
-          case'/api/categories/7': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup("<b>"+ key.nbStreet +' '+ key.streetName+"</b><br>"+ key.city +"<br>Waste")); break ;
+          case'/api/categories/7': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup(popupInfo)); break ;
           //Wood
           case'/api/categories/6': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup("<b>"+ key.nbStreet +' '+ key.streetName+"</b><br>"+ key.city +"<br>Poubelle à Bois")); break ;
           //Compost
@@ -90,15 +110,17 @@ export class IndexComponent {
           //Cardboard
           case'/api/categories/3': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup("<b>"+ key.nbStreet +' '+ key.streetName+"</b><br>"+ key.city +"<br>Poubelle à Carton")); break ;
           //Glass
-          case'/api/categories/2': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup("<b>"+ key.nbStreet +' '+ key.streetName+"</b><br>"+ key.city +"<br>Poubelle à Verre")); break ;
+          case'/api/categories/2':  markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin})
+          .bindPopup(popupInfo)); break ;
           //Plastic
-          case'/api/categories/1': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup("<b>"+ key.nbStreet +' '+ key.streetName+"</b><br>"+ key.city +"<br>Poubelle à Plastique")); break ;
+          case'/api/categories/1': markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.blueBin}).bindPopup(popupInfo)); break ;
           }
         });
         this.layers=markerCluster
         this.loading = false
      })
   }
+
 
   //MAP LEAFLET PARAMS
   layers = L.markerClusterGroup()
@@ -117,7 +139,7 @@ export class IndexComponent {
   ngAfterViewInit(): void {
   this.setMarkers()
   this.trackMe()
-
+  this.routing.addTo(this.map)
 
   }
 
@@ -133,4 +155,6 @@ userMarker = L.icon({
   iconAnchor: [20, 25],
 
 })
+
+
 }
