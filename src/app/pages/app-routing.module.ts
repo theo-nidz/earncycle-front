@@ -1,19 +1,20 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
-import { LayoutMenuComponent } from './layouts/layout-menu/layout-menu.component';
-import { LayoutNomenuComponent } from './layouts/layout-nomenu/layout-nomenu.component';
-import { ErrorComponent } from './pages/error/error.component';
-import { IndexComponent } from './pages/index/index.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ResetpwdComponent } from './pages/resetpwd/resetpwd.component';
-import { TosComponent } from './pages/tos/tos.component';
-import { VouchersComponent } from './pages/vouchers/vouchers.component';
-import {InfosComponent} from "./shared/components/infos/infos.component";
-import {CouponComponent} from "./shared/components/coupon/coupon.component";
-import {CouponDetailsComponent} from "./shared/components/coupon-details/coupon-details.component";
-import {IntroComponent} from "./shared/components/intro/intro.component";
+import { LayoutMenuComponent } from '../layouts/layout-menu/layout-menu.component';
+import { LayoutNomenuComponent } from '../layouts/layout-nomenu/layout-nomenu.component';
+import { ErrorComponent } from './error/error.component';
+import { IndexComponent } from './index/index.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
+import { ResetpwdComponent } from './resetpwd/resetpwd.component';
+import { TosComponent } from './tos/tos.component';
+
+import { CouponDetailsComponent } from './coupon-details/coupon-details.component';
+import { CouponComponent } from './coupon/coupon.component';
+import { InfosComponent } from './infos/infos.component';
+import { IntroComponent } from './intro/intro.component';
 
 
 
@@ -36,10 +37,7 @@ const routes: Routes = [
         path:'profile',
         component:ProfileComponent
       },
-      {
-        path:'vouchers',
-        component:VouchersComponent
-      },
+
       {
         path:'error',
         component:ErrorComponent
@@ -52,10 +50,7 @@ const routes: Routes = [
         path:'coupon',
         component: CouponComponent
       },
-      {
-        path:'coupon-details',
-        component: CouponDetailsComponent
-      },
+
 
     ]
   },
@@ -87,6 +82,10 @@ const routes: Routes = [
         path:'intro',
         component:IntroComponent
 
+      },
+      {
+        path:'coupon-details',
+        component: CouponDetailsComponent
       },
     ]
   }

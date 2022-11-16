@@ -5,10 +5,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LayoutMenuComponent } from './layout-menu.component';
 import { IndexComponent } from 'src/app/pages/index/index.component';
 import { ProfileComponent } from 'src/app/pages/profile/profile.component';
-import { VouchersComponent } from 'src/app/pages/vouchers/vouchers.component';
 import { RouterModule } from '@angular/router';
 import { ErrorComponent } from 'src/app/pages/error/error.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 
 
 
@@ -18,7 +18,6 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     IndexComponent,
     ProfileComponent,
     ErrorComponent,
-    VouchersComponent,
 
   ],
   imports: [
