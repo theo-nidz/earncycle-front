@@ -8,7 +8,6 @@
 .containerCoupon {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
   text-align: center;
   background: #ECECEC;
   max-width: 1000px;
@@ -45,13 +44,10 @@ margin: 1rem;
 object-fit: scale-down;
 }
 .couponDetailsCard {
-display: flex;
-flex-direction: column;
-background: white;
-width: 250px;
-height: 250px;
-border-radius: 5px;
-margin: 2rem;
+/*width: 250px;*/
+/*height: 250px;*/
+/*border-radius: 5px;*/
+/*margin: 2rem;*/
 background:
 linear-gradient(to right, #25D0B6 4px, transparent 4px) 0 0,
 linear-gradient(to right, #25D0B6 4px, transparent 4px) 0 100%,
