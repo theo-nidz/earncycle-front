@@ -1,10 +1,5 @@
 
-<header class="z-40 fixed w-full bg-light">
-  <div class="p-2">
-    <p class="text-center">Index</p>
-  </div>
 
-</header>
 
 <div>
   <div class="w-screen h-screen z-10 relative"
@@ -19,21 +14,42 @@
   *ngIf="options">
   </div>
   <div class="absolute flex flex-col-reverse right-1 bottom-16 sm:bottom-20 sm:right-3  z-50 gap-1">
-    <button (click)="trackMe()" class=" rounded-full bg-primary relative  w-12 h-12 "><img src="assets/userMarker.png"  class="w-8 h-10 absolute top-1/2 left-1/2"></button>
-    <button (click)="openFilter()" class="rounded-full bg-primary w-12 h-12 relative"><img src="assets/images/index/filter.svg" class="w-10 h-10 absolute top-1/2 left-1/2"></button>
-    <button (click)="routeTo()" class="rounded-full bg-primary w-12 h-12 relative"><img src="assets/images/index/filter.svg" class="w-10 h-10 absolute top-1/2 left-1/2"></button>
-  
+    <button (click)="trackMe()" class=" rounded-full bg-primary relative  w-12 h-12 "><img src="assets/images/global/userMarker.png"  class="w-8 h-8 absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></button>
+    <button (click)="openFilter()" class="rounded-full bg-primary w-12 h-12 relative"><img src="assets/images/index/filter.svg" class="w-8 h-8  absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 "></button>
+
+
   </div>
 </div>
 
+<div class="absolute top-0  md:left-3/4 right-0 bottom-0 bg-light z-50 border border-dark rounded overflow-y-auto filterBar" *ngIf="modalFilter == true">
+<div class="flex justify-between p-3"><h2>Filter les poubelles</h2> <div><img src="assets/images/global/cancel.svg" class="w-6 h-6 hover:cursor-pointer" (click)="closeFilter()" /> </div></div>
+<div class="flex flex-col p-3 gap-4">
 
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Autre')">Autre</button>
 
-<div class="absolute top-1/4 left-0 right-0 bottom-0 bg-light z-50 border border-dark rounded" *ngIf="modalFilter == true">
-<div class="flex justify-end p-3"> <img src="assets/images/global/cancel.svg" class="w-6 h-6" (click)="closeFilter()" /> </div>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Verre')">Verre</button>
+
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Ordures ménagères')">Ordures ménagères</button>
+
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Bois')">Bois</button>
+
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Cartons')">Cartons</button>
+
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Métal')">Métal</button>
+
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Plastique')">Plastique</button>
+
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Vêtement')">Vêtements</button>
+
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Composte')">Composte</button>
+
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Recyclage')">Recyclage</button>
+</div>
 </div>
 
 <div class="absolute w-full h-full top-0 z-50 loader--bg" *ngIf="loading">
-  <div class="loader--loading relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4 before:bg-primary " ><span class="flex flex-col items-center "><img class="animate-spin " src="assets/images/global/loader.png" alt="Loading" draggable="false">  Loading</span></div>
+  <div class="loader--loading relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4 before:bg-primary " ><span class="flex flex-col items-center "> <img class="animate-spin " src="assets/images/global/loader.png" alt="Loading" draggable="false">  Loading</span></div>
+
 </div>
 
 

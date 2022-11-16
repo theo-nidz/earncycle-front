@@ -12,4 +12,14 @@
   background-color: rgba(0, 0, 0, 0.5)
 }
 
+.goToBtn{
+  width:40px;
+  height:40px;
+  background-color:red;
+}
 
+
+.filterBar{
+  transition: 1s;
+
+}
