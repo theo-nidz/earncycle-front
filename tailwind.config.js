@@ -8,7 +8,7 @@ module.exports = {
       dark:'#000000',
       grey:'#BEBDBD',
       light:'#FFFFFF',
-      grey:'#808080'
+      error: '#e14242'
     },
     extend: {},
   },

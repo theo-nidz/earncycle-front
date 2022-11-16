@@ -5,8 +5,7 @@
     <img src="assets/verticalDots.svg" alt="">
   </div>
 </header>
-<div class="container mx-auto h-full">
-
+<div class="container mx-auto bg-light p-10 max-w-lg rounded-lg mt-10">
 
 
 <form class="flex flex-col w-8/12 mx-auto pt-20"
@@ -18,7 +17,7 @@
       >
   <div class="mb-6">
     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-    <input 
+    <input
     [(ngModel)]="form.email"
     required
     name="email"
@@ -35,7 +34,7 @@
   </div>
   <div class="mb-6">
     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mot de passe</label>
-    <input 
+    <input
     [(ngModel)]="form.password"
           required
           minlength="8"
@@ -56,8 +55,8 @@
   </div>
 
   <a href="/resetpwd" class="text-grey">Mot de passe oublié ?</a>
-  <button type="submit" class="rounded mt-5  py-2 bg-primary text-light">S'inscrire</button>
 
+  <button type="submit" class="rounded  py-2 bg-primary text-light ">Connexion</button>
 </form>
 
 

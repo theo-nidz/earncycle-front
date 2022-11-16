@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -22,13 +23,17 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+
+  constructor(private authService: AuthService, private router:Router) {
+
+  }
 
   ngOnInit(): void {
   }
 
+
   onSubmit(): void {
-    const {email, 
+    const {email,
       password,
       confirmpassword,
       lname,
@@ -47,8 +52,8 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = "Les mots de passe doivent être identiques !";
         this.isSignUpFailed = true;
       }else{
-        this.authService.register(email, 
-          password, 
+        this.authService.register(email,
+          password,
           lname,
           fname,
           phone,
@@ -59,6 +64,8 @@ export class RegisterComponent implements OnInit {
             console.log(data);
             this.isSuccessful = true;
             this.isSignUpFailed = false;
+
+            this.router.navigateByUrl('/login')
           },
           error: err => {
             this.errorMessage = err.error.message;
