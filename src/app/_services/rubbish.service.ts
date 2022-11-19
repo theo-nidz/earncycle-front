@@ -13,6 +13,11 @@ export class RubbishService {
     this.url = environment.apiUrl + 'rubbishes';
    }
 
+  //  Get all category
+  getAllCategory(json: boolean, deleted: boolean = false): Observable<any> {
+    const request = environment.apiUrl + 'catogies' + (json ? '.json' : '') + '?deleted=' + deleted;
+    return this.http.get(request, { responseType: 'json' });
+  }
 
   getAllRubbish(json: boolean, deleted: boolean = false): Observable<any> {
     const request = this.url + (json ? '.json' : '') + '?deleted=' + deleted;
@@ -23,5 +28,31 @@ export class RubbishService {
     const request = this.url + (json ? '.json' : '') + '?category.name=' + category + '&deleted=' + deleted;
     return this.http.get(request, { responseType: 'json' });
   }
+
+  /**
+   * 
+   * @param rubbish 
+   * @returns 
+   * @example
+   * rubbish = {
+   * category = id of category
+   * longitude = 123.123 : string
+   * latitude = 123.123 : string
+   * createdBy = id of user
+   */
+  createRubbish(rubbish: Rubbish): Observable<any> {
+    return this.http.post(this.url, rubbish, { responseType: 'json' });
+  }
 }
   
+export type Rubbish = {
+    category: number,
+    longitude: string,
+    latitude: string,
+    nbStreet: string,
+    streetName: string,
+    city: string,
+    country: string,
+    postalCode: string,
+    createdBy: number
+  }

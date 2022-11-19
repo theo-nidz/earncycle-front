@@ -7,10 +7,41 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  private url: string;
+  constructor(private http: HttpClient) {
+    this.url = environment.apiUrl + 'users';
+  }
 
   getUserById(id: number): Observable<any> {
-    return this.http.get(environment.apiUrl + 'users/' + id, { responseType: 'json' });
+    return this.http.get(this.url + '/' + id, { responseType: 'json' });
   }
   
+  updateUserersonalInfo(id: number, data: UserUpdate): Observable<any> {
+    return this.http.put(this.url + '/' + id, data, { responseType: 'json' });
+  }
+
+  updateUserWallet(id: number, amount: UserWallet): Observable<any> {
+
+    return this.http.put(this.url + '/' + id, amount, { responseType: 'json' });
+  }
+  updateUserTrees(id: number, trees: UserTrees): Observable<any> {
+    return this.http.put(this.url + '/' + id, trees, { responseType: 'json' });
+  }
 }
+
+export type UserUpdate = {
+  email: string;
+  password: string;
+  fname: string;
+  lname: string;
+  phone: string;
+  adress: string;
+  nickname: string;
+};
+
+export type UserWallet = {
+  wallet: number;
+};
+export type UserTrees = {
+  trees: number;
+};
