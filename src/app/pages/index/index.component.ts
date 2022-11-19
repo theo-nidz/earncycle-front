@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import { latLng, tileLayer, Icon, icon, Marker } from "leaflet";
 import 'leaflet-routing-machine';
+import { RubbishService } from 'src/app/_services/rubbish.service';
 
 @Component({
   selector: 'app-index',
@@ -36,7 +37,7 @@ export class IndexComponent {
   map : L.Map
 
 
-  constructor(private _http:HttpClient) {}
+  constructor(private rubbishService: RubbishService) {}
 
   //GEOLOCATION
   trackMe() {
@@ -75,7 +76,7 @@ export class IndexComponent {
   setMarkers(){
     this.loading = true
     const markerCluster = L.markerClusterGroup()
-    this._http.get('http://127.0.0.1:8000/api/rubbishes.json?delete=false').subscribe((res:any)=>{
+    this.rubbishService.getAllRubbish(true, false).subscribe((res:any)=>{
       console.log(res)
         res.forEach((key:any) => {
 
@@ -115,6 +116,7 @@ export class IndexComponent {
       case"Composte": Icon = this.compostBin; break;
       case"Plastique":  Icon = this.plasticBin; break;
       case"Vêtements": Icon = this.clothesBin; break;
+      default: Icon = this.otherBin; break;
     }
     return Icon
   }
@@ -122,7 +124,7 @@ export class IndexComponent {
   filter(cat:string){
     this.loading = true
     const markerCluster = L.markerClusterGroup()
-    this._http.get('http://127.0.0.1:8000/api/rubbishes?page=1&deleted=false&category=' + cat).subscribe((res:any)=>{
+    this.rubbishService.getRubbishByCategory(cat, true, false).subscribe((res:any)=>{
  
       res.forEach((key:any) => {
         // console.log('FOREACH',key)
