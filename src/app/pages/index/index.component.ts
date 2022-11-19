@@ -105,6 +105,7 @@ export class IndexComponent {
 
   checkIcon(cat:string){
     var Icon= this.glassBin
+    // TODO: change the value name of the category related to the db
     switch(cat){
       case"Autre": Icon = this.otherBin; break;
       case"Verre":  Icon = this.glassBin; break;
