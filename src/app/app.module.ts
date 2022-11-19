@@ -23,7 +23,6 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutMenuModule,
     LayoutNomenuModule,
     LeafletModule,
-    HttpClientModule,
     LeafletMarkerClusterModule,
   ],
   providers: [authInterceptorProviders],
