@@ -14,12 +14,12 @@ export class RubbishService {
    }
 
 
-  getAllRubbish(json: boolean, deleted: boolean): Observable<any> {
+  getAllRubbish(json: boolean, deleted: boolean = false): Observable<any> {
     const request = this.url + (json ? '.json' : '') + '?deleted=' + deleted;
     return this.http.get(request, { responseType: 'json' });
   }
 
-  getRubbishByCategory(category: string, json: boolean, deleted: boolean): Observable<any> {
+  getRubbishByCategory(category: string, json: boolean, deleted: boolean =false): Observable<any> {
     const request = this.url + (json ? '.json' : '') + '?category.name=' + category + '&deleted=' + deleted;
     return this.http.get(request, { responseType: 'json' });
   }
