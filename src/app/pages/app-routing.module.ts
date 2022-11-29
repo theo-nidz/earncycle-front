@@ -51,6 +51,8 @@ const routes: Routes = [
         component: CouponComponent
       },
 
+      // TODO create page 404
+      // {path: '**', component: Page404},
 
     ]
   },

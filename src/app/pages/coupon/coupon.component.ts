@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VoucherService } from 'src/app/_services/voucher.service';
 // Type
-import { Voucher } from 'src/app/voucher.model';
+import { Voucher } from 'src/app/model/voucher.model';
 
 @Component({
   selector: 'app-coupon',
