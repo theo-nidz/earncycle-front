@@ -10,22 +10,22 @@ import { environment } from 'src/environments/environment';
 export class AppComponent implements OnInit {
   title = 'earn-cycle';
   private roles: string[] = [];
-  isAdmin = false;
-  isUser = false;
-  isLoggedIn = false;
+  static isAdmin = false;
+  static isUser = false;
+  static isLoggedIn = false;
   username?: string;
 
   constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    AppComponent.isLoggedIn = !!this.tokenStorageService.getToken();
 
-    if (this.isLoggedIn) {
+    if ( AppComponent.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
 
-      this.isUser = this.roles.includes('ROLE_USER');
-      this.isAdmin = this.roles.includes('ROLE_ADMIN');
+      AppComponent.isUser = this.roles.includes('ROLE_USER');
+      AppComponent.isAdmin = this.roles.includes('ROLE_ADMIN');
 
       this.username = user.username;
     }

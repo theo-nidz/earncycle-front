@@ -15,6 +15,7 @@ import { CouponDetailsComponent } from './coupon-details/coupon-details.componen
 import { CouponComponent } from './coupon/coupon.component';
 import { InfosComponent } from './infos/infos.component';
 import { IntroComponent } from './intro/intro.component';
+import { AuthRouterGuard } from '../_services/auth-router.guard';
 
 
 
@@ -35,7 +36,8 @@ const routes: Routes = [
       },
       {
         path:'profile',
-        component:ProfileComponent
+        component:ProfileComponent,
+        canActivate: [AuthRouterGuard],
       },
 
       {
@@ -78,7 +80,8 @@ const routes: Routes = [
       {
 
         path:'resetpwd',
-        component:ResetpwdComponent
+        component:ResetpwdComponent,
+        canActivate: [AuthRouterGuard],
       },
       {
         path:'intro',
