@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 // type
-import { Rubbish } from '../rubbish.model';
+import { Rubbish } from '../model/rubbish.model';
 
 @Injectable({
   providedIn: 'root'
