@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+// type
+import { Rubbish } from '../rubbish.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,15 +46,3 @@ export class RubbishService {
     return this.http.post(this.url, rubbish, { responseType: 'json' });
   }
 }
-  
-export type Rubbish = {
-    category: number,
-    longitude: string,
-    latitude: string,
-    nbStreet: string,
-    streetName: string,
-    city: string,
-    country: string,
-    postalCode: string,
-    createdBy: number
-  }

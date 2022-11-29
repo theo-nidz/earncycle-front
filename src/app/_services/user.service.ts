@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { UserTrees } from '../user-trees.model';
+import { UserWallet } from '../user-wallet.model';
+import { UserUpdate } from '../user-update.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,20 +31,3 @@ export class UserService {
     return this.http.put(this.url + '/' + id, trees, { responseType: 'json' });
   }
 }
-
-export type UserUpdate = {
-  email: string;
-  password: string;
-  fname: string;
-  lname: string;
-  phone: string;
-  adress: string;
-  nickname: string;
-};
-
-export type UserWallet = {
-  wallet: number;
-};
-export type UserTrees = {
-  trees: number;
-};

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { UserVoucher } from '../user-voucher.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,9 +40,3 @@ export class UserVoucherService {
   }
   
 }
-
-export type UserVoucher = {
-  voucherId: number;
-  userId: number;
-  claim: boolean;
-};
