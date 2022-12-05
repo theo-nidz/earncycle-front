@@ -10,7 +10,6 @@ import { RubbishService } from 'src/app/_services/rubbish.service';
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
-
 })
 export class IndexComponent {
 
@@ -77,9 +76,9 @@ export class IndexComponent {
       this.userCoord =  L.latLng(position.coords.latitude, position.coords.longitude)
     })
   }
-
   goUser(){
     this.center = this.userCoord
+    this.zoom = 18
   }
   openFilter(){
     this.modalFilter = true
@@ -90,8 +89,6 @@ export class IndexComponent {
   onMapReady(map: L.Map){
     this.map= map
   }
-
-
   getDistanceFromLatLonInKm(lat1:any, lon1:any, lat2:any, lon2:any) {
     var R = 6371; // Radius of the earth in km
     var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
@@ -104,11 +101,9 @@ export class IndexComponent {
     var d = R * c; // Distance in km
     return d;
   }
-
   deg2rad(deg:any) {
     return deg * (Math.PI/180)
   }
-
   routeTo(coord:any) {
 		this.routing.setWaypoints([this.userCoord, coord]);
     if(this.getDistanceFromLatLonInKm(this.userCoord.lat,this.userCoord.lng,coord[0],coord[1]) <= 0.030){
