@@ -15,9 +15,6 @@
   <div class="absolute flex flex-col-reverse right-1 bottom-16 sm:bottom-20 sm:right-3  z-50 gap-1">
     <button (click)="goUser()" class=" rounded-full bg-primary relative  w-12 h-12 "><img src="assets/images/global/userMarker.png"  class="w-8 h-8 absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></button>
     <button (click)="openFilter()" class="rounded-full bg-primary w-12 h-12 relative"><img src="assets/images/index/filter.svg" class="w-8 h-8  absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 "></button>
-    <button (click)="userAchievement()">
-OEEEEEEEEEE
-    </button>
   </div>
 </div>
 
@@ -51,6 +48,7 @@ OEEEEEEEEEE
 
 <div class="absolute w-full h-full top-0 z-50 achievement--bg" *ngIf="userAchievementPopup">
   <div class="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4  max-w-xs achievement--inner">
+    <img src="assets/images/global/cancel.svg" class="w-6 h-6 hover:cursor-pointer absolute top-3 right-3" (click)="closeAchievement()" />
     <div class="success-checkmark">
       <div class="check-icon">
         <span class="icon-line line-tip"></span>

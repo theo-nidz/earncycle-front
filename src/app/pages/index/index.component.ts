@@ -1,3 +1,4 @@
+import { CouponDetailsComponent } from './../coupon-details/coupon-details.component';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
@@ -47,6 +48,11 @@ export class IndexComponent {
     // Add +1 Arbe à user
     this.coins = coins
     this.userAchievementPopup=true
+  }
+  closeAchievement(){
+    this.userAchievementPopup=false
+    this.routing.spliceWaypoints(0,2)
+    this.map.closePopup()
   }
   //GEOLOCATION
   trackMe() {
@@ -104,31 +110,18 @@ export class IndexComponent {
   }
 
   routeTo(coord:any) {
-
 		this.routing.setWaypoints([this.userCoord, coord]);
-
-
-    if(this.getDistanceFromLatLonInKm(this.userCoord.lat,this.userCoord.lng,coord[0],coord[1]) <= 0.3){
-      console.log('assez proche');
+    if(this.getDistanceFromLatLonInKm(this.userCoord.lat,this.userCoord.lng,coord[0],coord[1]) <= 0.030){
+      this.userAchievement()
     }else{
       navigator.geolocation.watchPosition((position)=>{
         console.log(this.getDistanceFromLatLonInKm(position.coords.latitude,position.coords.longitude,coord[0],coord[1]))
         if(this.getDistanceFromLatLonInKm(position.coords.latitude,position.coords.longitude,coord[0],coord[1]) <= 0.2){
-          console.log('assez proche');
-        }else{
-          console.log('pas assez proche')
+          this.userAchievement()
         }
        });
     }
-
-
-
-
 	}
-
-
-
-
   //OnInit, set markers from BDD
   setMarkers(){
     this.loading = true
