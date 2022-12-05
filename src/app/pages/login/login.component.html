@@ -8,15 +8,15 @@
 <div class="container mx-auto bg-light p-10 max-w-lg rounded-lg mt-10">
 
 
-<form class="flex flex-col w-8/12 mx-auto pt-20"
+<form class="flex flex-col mx-auto gap-4"
     *ngIf="!isLoggedIn"
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"
       #f="ngForm"
       novalidate
       >
-  <div class="mb-6">
-    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+  <div class="mb-4 relative">
+    <label for="email" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Email</label>
     <input
     [(ngModel)]="form.email"
     required
@@ -24,16 +24,15 @@
     #email="ngModel"
     type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="email@earncycle.com" required="">
     <div
-          class="alert alert-danger"
+          class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full"
           role="alert"
           *ngIf="email.errors && f.submitted"
         >
-        <!-- TODO personalise error -->
-          Email est requit !
+        <div class="text-error font-semibold text-center text-sm" *ngIf="email.errors['required']">L'email est obligatoire !</div>
         </div>
   </div>
-  <div class="mb-6">
-    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mot de passe</label>
+  <div class="mb-4 relative">
+    <label for="password" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Mot de passe</label>
     <input
     [(ngModel)]="form.password"
           required
@@ -43,12 +42,12 @@
           ngModel
     type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
     <div
-          class="alert alert-danger"
+          class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full"
           role="alert"
           *ngIf="password.errors && f.submitted"
         >
-          <div *ngIf="password.errors['required']">Le mots de passe est obligatoire !</div>
-          <div *ngIf="password.errors['minlength']">
+          <div class="text-error font-semibold text-center text-sm" *ngIf="password.errors['required']">Le mots de passe est obligatoire !</div>
+          <div  class="text-error font-semibold text-center text-sm" *ngIf="password.errors['minlength']">
             Le mots de passe doit contenir au moins 8 caractères
           </div>
         </div>
