@@ -122,8 +122,8 @@ export class IndexComponent {
   filter(cat:string){
     this.loading = true
     const markerCluster = L.markerClusterGroup()
-    this._http.get('http://127.0.0.1:8000/api/rubbishes?page=1&deleted=false&category=' + cat).subscribe((res:any)=>{
- 
+    this._http.get('http://127.0.0.1:8000/api/rubbishes&deleted=false&category=' + cat).subscribe((res:any)=>{
+
       res.forEach((key:any) => {
         // console.log('FOREACH',key)
         let popupInfo = document.createElement('div')
