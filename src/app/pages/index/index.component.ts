@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import { latLng, tileLayer, Icon, icon, Marker } from "leaflet";
 import 'leaflet-routing-machine';
+import { RubbishService } from 'src/app/_services/rubbish.service';
 
 @Component({
   selector: 'app-index',
@@ -21,6 +22,10 @@ export class IndexComponent {
   rubbishes = {}
   modalFilter= false
   isRoute=false
+  userAchievementPopup= false
+  errorGeoloc=false
+  coins= 0
+
   routing= L.Routing.control({
     waypoints: [],
     routeWhileDragging: false,
@@ -36,10 +41,16 @@ export class IndexComponent {
   map : L.Map
 
 
-  constructor(private _http:HttpClient) {}
-
+  constructor(private rubbishService: RubbishService) {}
+  userAchievement(){
+    const coins = Math.floor(Math.random() * (20 - 10) + 10);
+    // Add +1 Arbe à user
+    this.coins = coins
+    this.userAchievementPopup=true
+  }
   //GEOLOCATION
   trackMe() {
+    if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
         let marker:L.Marker<any>[]=[]
         //@ts-ignore
@@ -47,25 +58,72 @@ export class IndexComponent {
         marker.push(L.marker([position.coords.latitude,position.coords.longitude],{icon:this.userMarker}))
         this.userPosition = marker
         this.userCoord =  L.latLng(position.coords.latitude, position.coords.longitude)
-        console.log(this.userCoord)
         this.zoom = 18
       });
+    }
   }
 
+  getPosition(){
+    navigator.geolocation.watchPosition((position)=>{
+      let marker:L.Marker<any>[]=[]
+      marker.push(L.marker([position.coords.latitude,position.coords.longitude],{icon:this.userMarker}))
+      this.userPosition = marker
+      this.userCoord =  L.latLng(position.coords.latitude, position.coords.longitude)
+    })
+  }
+
+  goUser(){
+    this.center = this.userCoord
+  }
   openFilter(){
     this.modalFilter = true
   }
   closeFilter(){
     this.modalFilter = false
   }
-
   onMapReady(map: L.Map){
     this.map= map
   }
 
+
+  getDistanceFromLatLonInKm(lat1:any, lon1:any, lat2:any, lon2:any) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = this.deg2rad(lon2-lon1);
+    var a =
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+      Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c; // Distance in km
+    return d;
+  }
+
+  deg2rad(deg:any) {
+    return deg * (Math.PI/180)
+  }
+
   routeTo(coord:any) {
 
-		this.routing.setWaypoints([this.userCoord, coord])
+		this.routing.setWaypoints([this.userCoord, coord]);
+
+
+    if(this.getDistanceFromLatLonInKm(this.userCoord.lat,this.userCoord.lng,coord[0],coord[1]) <= 0.3){
+      console.log('assez proche');
+    }else{
+      navigator.geolocation.watchPosition((position)=>{
+        console.log(this.getDistanceFromLatLonInKm(position.coords.latitude,position.coords.longitude,coord[0],coord[1]))
+        if(this.getDistanceFromLatLonInKm(position.coords.latitude,position.coords.longitude,coord[0],coord[1]) <= 0.2){
+          console.log('assez proche');
+        }else{
+          console.log('pas assez proche')
+        }
+       });
+    }
+
+
+
+
 	}
 
 
@@ -75,7 +133,7 @@ export class IndexComponent {
   setMarkers(){
     this.loading = true
     const markerCluster = L.markerClusterGroup()
-    this._http.get('http://127.0.0.1:8000/api/rubbishes.json?delete=false').subscribe((res:any)=>{
+    this.rubbishService.getAllRubbish(true, false).subscribe((res:any)=>{
       console.log(res)
         res.forEach((key:any) => {
 
@@ -104,6 +162,7 @@ export class IndexComponent {
 
   checkIcon(cat:string){
     var Icon= this.glassBin
+    // TODO: change the value name of the category related to the db
     switch(cat){
       case"Autre": Icon = this.otherBin; break;
       case"Verre":  Icon = this.glassBin; break;
@@ -115,6 +174,7 @@ export class IndexComponent {
       case"Composte": Icon = this.compostBin; break;
       case"Plastique":  Icon = this.plasticBin; break;
       case"Vêtements": Icon = this.clothesBin; break;
+      default: Icon = this.otherBin; break;
     }
     return Icon
   }
@@ -122,7 +182,7 @@ export class IndexComponent {
   filter(cat:string){
     this.loading = true
     const markerCluster = L.markerClusterGroup()
-    this._http.get('http://127.0.0.1:8000/api/rubbishes&deleted=false&category=' + cat).subscribe((res:any)=>{
+    this.rubbishService.getRubbishByCategory(cat, true, false).subscribe((res:any)=>{
 
       res.forEach((key:any) => {
         // console.log('FOREACH',key)
@@ -168,6 +228,7 @@ export class IndexComponent {
   this.setMarkers()
   this.trackMe()
   this.routing.addTo(this.map)
+  this.getPosition()
 
   }
 
