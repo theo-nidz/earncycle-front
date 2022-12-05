@@ -17,10 +17,10 @@ name="form"
 (ngSubmit)="f.form.valid && onSubmit()"
 #f="ngForm"
 novalidate
-class="flex flex-col w-8/12 mx-auto">
+class="flex flex-col mx-auto gap-4">
 
-  <div class="mb-6">
-    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+  <div class="mb-4 relative">
+    <label for="email" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Email</label>
     <input
     class="form-control"
           name="email"
@@ -29,12 +29,12 @@ class="flex flex-col w-8/12 mx-auto">
           #email="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
     type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="email@earncycle.com" required="" >
-    <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
-      <div class="text-error font-bold text-center p-2 text-sm" *ngIf="email.errors['required']">Email requis !</div>
+    <div class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full" *ngIf="email.errors && f.submitted">
+      <div class="text-error  font-semibold text-center  text-sm" *ngIf="email.errors['required']">Email requis !</div>
     </div>
   </div>
-  <div class="mb-6">
-    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mot de passe</label>
+  <div class="mb-4 relative">
+    <label for="password" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Mot de passe</label>
     <input
     name="password"
           [(ngModel)]="form.password"
@@ -43,15 +43,15 @@ class="flex flex-col w-8/12 mx-auto">
           #password="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
     type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
-    <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
-      <div class="text-error font-bold text-center p-2 text-sm"  *ngIf="password.errors['required']">Mot de passe obligatoire</div>
-      <div class="text-error font-bold text-center p-2 text-sm"  *ngIf="password.errors['minlength']">
+    <div class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full" *ngIf="password.errors && f.submitted">
+      <div class="text-error  font-semibold text-center text-sm"  *ngIf="password.errors['required']">Mot de passe obligatoire</div>
+      <div class="text-error  font-semibold text-center text-sm"  *ngIf="password.errors['minlength']">
         Le mot de passe doit être de 8 caractères minimum
       </div>
     </div>
   </div>
-  <div class="mb-6">
-    <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Validez votre mot de passe</label>
+  <div  class="mb-4 relative">
+    <label for="repeat-password" class =" font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Validez votre mot de passe</label>
     <input
     name="password"
         [(ngModel)]="form.confirmpassword"
@@ -60,9 +60,9 @@ class="flex flex-col w-8/12 mx-auto">
         #confirmpassword="ngModel"
         [ngClass]="{ 'is-invalid': f.submitted && confirmpassword.errors }"
     type="password" id="repeat-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
-    <div class="invalid-feedback" *ngIf="confirmpassword.errors && f.submitted">
-      <div class="text-error font-bold text-center p-2 text-sm"  *ngIf="confirmpassword.errors['required']">Mot de passe obligatoire</div>
-      <div class="text-error font-bold text-center p-2 text-sm"  *ngIf="confirmpassword.errors['minlength']">
+    <div class="invalid-feedback alert alert-danger absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-full" *ngIf="confirmpassword.errors && f.submitted">
+      <div class="text-error  font-semibold text-center text-sm"  *ngIf="confirmpassword.errors['required']">Mot de passe obligatoire</div>
+      <div class="text-error  font-semibold text-center text-sm"  *ngIf="confirmpassword.errors['minlength']">
         Le mots de passe doit être de 8 caractères minimum
       </div>
     </div>
@@ -70,8 +70,8 @@ class="flex flex-col w-8/12 mx-auto">
 
 <!--  TEST START -->
 
-  <div class="mb-6">
-    <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Surnom</label>
+  <!-- <div class="mb-4 relative">
+    <label for="nickname" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Surnom</label>
     <input
     name="nickname"
           [(ngModel)]="form.nickname"
@@ -79,12 +79,12 @@ class="flex flex-col w-8/12 mx-auto">
           #nickname="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && nickname.errors }"
     type="text" id="nickname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
-    <div class="invalid-feedback" *ngIf="nickname.errors && f.submitted">
-      <div class="text-error font-bold text-center p-2"  *ngIf="nickname.errors['required']">Surnom obligatoire</div>
+    <div class="invalid-feedback alert alert-danger absolute -bottom-6 left-1/2 transform -translate-x-1/2" *ngIf="nickname.errors && f.submitted">
+      <div class="text-error font-bold text-center "  *ngIf="nickname.errors['required']">Surnom obligatoire</div>
     </div>
-  </div>
-  <div class="mb-6">
-    <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nom de famille</label>
+  </div> -->
+  <div  class="mb-4 relative">
+    <label for="lname" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Nom de famille</label>
     <input
     name="lname"
           [(ngModel)]="form.lname"
@@ -92,12 +92,12 @@ class="flex flex-col w-8/12 mx-auto">
           #lname="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && lname.errors }"
     type="text" id="lname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
-    <div class="invalid-feedback" *ngIf="lname.errors && f.submitted">
-      <div class="text-error font-bold text-center p-2"  *ngIf="lname.errors['required']">Nom de famille obligatoire</div>
+    <div class="invalid-feedback alert alert-danger absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-full" *ngIf="lname.errors && f.submitted">
+      <div class="text-error  font-semibold text-center"  *ngIf="lname.errors['required']">Nom de famille obligatoire</div>
     </div>
   </div>
-  <div class="mb-6">
-    <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Prénom</label>
+  <div  class="mb-4 relative">
+    <label for="fname" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Prénom</label>
     <input
     name="fname"
           [(ngModel)]="form.fname"
@@ -105,12 +105,12 @@ class="flex flex-col w-8/12 mx-auto">
           #fname="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && fname.errors }"
     type="text" id="fname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
-    <div class="invalid-feedback" *ngIf="fname.errors && f.submitted">
-      <div class="text-error font-bold text-center p-2"  *ngIf="fname.errors['required']">Prénom obligatoire</div>
+    <div class="invalid-feedback alert alert-danger absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-full" *ngIf="fname.errors && f.submitted">
+      <div class="text-error  font-semibold text-center"  *ngIf="fname.errors['required']">Prénom obligatoire</div>
     </div>
   </div>
-  <div class="mb-6">
-    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Numéro de téléphone</label>
+  <!-- <div  class="mb-4 relative">
+    <label for="phone" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Numéro de téléphone</label>
     <input
     name="phone"
           [(ngModel)]="form.phone"
@@ -118,12 +118,12 @@ class="flex flex-col w-8/12 mx-auto">
           #phone="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && phone.errors }"
     type="text" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
-    <div class="invalid-feedback" *ngIf="phone.errors && f.submitted">
-      <div class="text-error font-bold text-center p-2"  *ngIf="phone.errors['required']">Numéro de téléphone obligatoire</div>
+    <div class="invalid-feedback alert alert-danger absolute -bottom-6 left-1/2 transform -translate-x-1/2" *ngIf="phone.errors && f.submitted">
+      <div class="text-error font-bold text-center "  *ngIf="phone.errors['required']">Numéro de téléphone obligatoire</div>
     </div>
   </div>
-  <div class="mb-6">
-    <label for="adress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Adresse</label>
+  <div class="mb-4 relative">
+    <label for="adress" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Adresse</label>
     <input
     name="adress"
           [(ngModel)]="form.adress"
@@ -131,15 +131,14 @@ class="flex flex-col w-8/12 mx-auto">
           #adress="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && adress.errors }"
     type="text" id="adress" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required="">
-    <div class="invalid-feedback" *ngIf="adress.errors && f.submitted">
-      <div class="text-error font-bold text-center p-2"  *ngIf="adress.errors['required']">Adresse obligatoire</div>
+    <div class="invalid-feedback alert alert-danger absolute -bottom-6 left-1/2 transform -translate-x-1/2" *ngIf="adress.errors && f.submitted">
+      <div class="text-error font-bold text-center "  *ngIf="adress.errors['required']">Adresse obligatoire</div>
     </div>
-  </div>
+  </div> -->
 
 <!--  TEST END -->
 
-  <div class="flex items-start mb-6">
-    <div class="flex items-center mb-4">
+  <div class="flex items-start justify-center gap-1">
       <input
       name="terms"
           [(ngModel)]="form.terms"
@@ -147,14 +146,13 @@ class="flex flex-col w-8/12 mx-auto">
           #terms="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && terms.errors }"
       checked id="checkbox-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
-      <label for="checkbox-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
-      <div class="invalid-feedback" *ngIf="terms.errors && f.submitted">
-        <div class="text-error font-bold text-center  text-sm"  *ngIf="terms.errors['required']">Veuillez Validez les conditions général</div>
-      </div>
-  </div>
+      <label for="checkbox-1" class="font-bold text-sm text-gray-900 dark:text-gray-300">I agree to the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+    </div>
+    <div class="invalid-feedback alert alert-danger w-full" *ngIf="terms.errors && f.submitted">
+      <div class="text-error font-semibold text-center text-sm"  *ngIf="terms.errors['required']">Veuillez Validez les conditions général</div>
+    </div>
 
-  </div>
-  <button type="submit" class="rounded  py-2 bg-primary text-light ">S'inscrire</button>
+  <button type="submit" class="rounded  py-2 bg-primary text-light font-bold">S'inscrire</button>
   <!-- TODO set style -->
   <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
     Enregistrement échoué !<br />{{ errorMessage }}
