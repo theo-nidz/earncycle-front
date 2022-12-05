@@ -57,14 +57,7 @@ this.isLogged()
         this.errorMessage = "Les mots de passe doivent être identiques !";
         this.isSignUpFailed = true;
       }else{
-        this.authService.register(email,
-          password,
-          lname,
-          fname,
-          phone,
-          adress,
-          nickname
-          ).subscribe({
+        this.authService.register(this.form).subscribe({
           next: data => {
             console.log(data);
             this.isSuccessful = true;
