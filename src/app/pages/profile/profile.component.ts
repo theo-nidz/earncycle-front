@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { UserService } from 'src/app/_services/user.service';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -18,9 +19,10 @@ export class ProfileComponent {
   }
   logout(){
     this.tokenStorage.signOut()
+    this.router.navigateByUrl('/')
   }
 
-  constructor(private tokenStorage: TokenStorageService, private userService: UserService) { }
+  constructor(private tokenStorage: TokenStorageService, private userService: UserService , private router:Router) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {

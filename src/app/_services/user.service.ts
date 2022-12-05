@@ -1,17 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-const API_URL = 'http://127.0.0.1:8000/api/';
+import { environment } from 'src/environments/environment';
+import { UserTrees } from '../model/user-trees.model';
+import { UserWallet } from '../model/user-wallet.model';
+import { UserUpdate } from '../model/user-update.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  private url: string;
+  constructor(private http: HttpClient) {
+    this.url = environment.apiUrl + 'users';
+  }
 
   getUserById(id: number): Observable<any> {
-    return this.http.get(API_URL + 'users/' + id, { responseType: 'json' });
+    return this.http.get(this.url + '/' + id, { responseType: 'json' });
   }
   
+  updateUserersonalInfo(id: number, data: UserUpdate): Observable<any> {
+    return this.http.put(this.url + '/' + id, data, { responseType: 'json' });
+  }
+
+  updateUserWallet(id: number, amount: UserWallet): Observable<any> {
+
+    return this.http.put(this.url + '/' + id, amount, { responseType: 'json' });
+  }
+  updateUserTrees(id: number, trees: UserTrees): Observable<any> {
+    return this.http.put(this.url + '/' + id, trees, { responseType: 'json' });
+  }
 }
