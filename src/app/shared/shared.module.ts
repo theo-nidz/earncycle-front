@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { HeaderLogComponent } from '../component/header-log/header-log.component';
 
 
 @NgModule({
@@ -9,6 +10,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   imports: [
     CommonModule,
     LeafletModule,
+    HeaderLogComponent,
   ],
   exports:[
 
