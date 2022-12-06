@@ -10,7 +10,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetpwdComponent } from './resetpwd/resetpwd.component';
 import { TosComponent } from './tos/tos.component';
-
 import { CouponDetailsComponent } from './coupon-details/coupon-details.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { InfosComponent } from './infos/infos.component';

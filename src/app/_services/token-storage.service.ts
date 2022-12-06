@@ -44,7 +44,6 @@ export class TokenStorageService {
       console.log(userRole);
       return userRole;
     }
-
     return {};
   }
 }

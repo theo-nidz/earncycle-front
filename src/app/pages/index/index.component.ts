@@ -1,10 +1,9 @@
-import { CouponDetailsComponent } from './../coupon-details/coupon-details.component';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
+import { Component, createPlatform, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
-import { latLng, tileLayer, Icon, icon, Marker } from "leaflet";
 import 'leaflet-routing-machine';
+import { TokenStorageService } from 'src/app/_services/token-storage.service'
 import { RubbishService } from 'src/app/_services/rubbish.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-index',
@@ -19,10 +18,14 @@ export class IndexComponent {
   long = 0
   userPosition = [L.marker([0,0])]
   userCoord= L.latLng(0, 0 )
+  userWallet:number= 0
+  userTrees:number= 0
+  userId= 0
   rubbishes = {}
   modalFilter= false
   isRoute=false
   userAchievementPopup= false
+  userAchievementLogged=false
   errorGeoloc=false
   coins= 0
 
@@ -36,16 +39,40 @@ export class IndexComponent {
     //@ts-ignore
     draggableWaypoints:false
   })
-
+  //MAP LEAFLET PARAMS
+  layers = L.markerClusterGroup()
+  center = L.latLng(49.443232, 1.099971 )
+  zoom = 10
+  options = {
+    zoomControl:false,
+    layers: [
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+    ],
+  };
   //  @ts-ignore
   map : L.Map
 
 
-  constructor(private rubbishService: RubbishService) {}
-  userAchievement(){
-    const coins = Math.floor(Math.random() * (20 - 10) + 10);
-    // Add +1 Arbe à user
-    this.coins = coins
+  constructor(private rubbishService: RubbishService,private tokenservice: TokenStorageService,private userservice: UserService) {}
+
+  // Achievement
+   userAchievement(){
+    if(window.sessionStorage.getItem('auth-user')){
+      console.log('Tree',this.userTrees)
+      console.log('Wallet',this.userWallet)
+
+      //Add coins à user
+      const coins:number = Math.floor(Math.random() * (20 - 10) + 10);
+      this.coins = coins
+      this.userservice.updateUserWallet(this.userId,{'wallet': this.userWallet + coins}).subscribe()
+      this.userWallet = (this.userWallet + coins)
+
+      // Add Tree à user
+      this.userservice.updateUserTrees(this.userId,{'trees': this.userTrees + 1}).subscribe()
+      this.userTrees = (this.userTrees + 1)
+
+      this.userAchievementLogged = true
+    }
     this.userAchievementPopup=true
   }
   closeAchievement(){
@@ -53,7 +80,11 @@ export class IndexComponent {
     this.routing.spliceWaypoints(0,2)
     this.map.closePopup()
   }
+
   //GEOLOCATION
+  onMapReady(map: L.Map){
+    this.map= map
+  }
   trackMe() {
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
@@ -67,7 +98,6 @@ export class IndexComponent {
       });
     }
   }
-
   getPosition(){
     navigator.geolocation.watchPosition((position)=>{
       let marker:L.Marker<any>[]=[]
@@ -75,19 +105,6 @@ export class IndexComponent {
       this.userPosition = marker
       this.userCoord =  L.latLng(position.coords.latitude, position.coords.longitude)
     })
-  }
-  goUser(){
-    this.center = this.userCoord
-    this.zoom = 18
-  }
-  openFilter(){
-    this.modalFilter = true
-  }
-  closeFilter(){
-    this.modalFilter = false
-  }
-  onMapReady(map: L.Map){
-    this.map= map
   }
   getDistanceFromLatLonInKm(lat1:any, lon1:any, lat2:any, lon2:any) {
     var R = 6371; // Radius of the earth in km
@@ -110,13 +127,42 @@ export class IndexComponent {
       this.userAchievement()
     }else{
       navigator.geolocation.watchPosition((position)=>{
-        console.log(this.getDistanceFromLatLonInKm(position.coords.latitude,position.coords.longitude,coord[0],coord[1]))
         if(this.getDistanceFromLatLonInKm(position.coords.latitude,position.coords.longitude,coord[0],coord[1]) <= 0.2){
           this.userAchievement()
         }
        });
     }
 	}
+// Cookie
+  getCookie(name:string) {
+    var cookieArr = document.cookie.split(";");
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        if(name == cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    return null;
+  }
+  checkCookie(){
+   if(this.getCookie('intro') === 'false'){
+    window.location.href = "/intro"
+   }
+  }
+
+  // Gestion Menu
+  goUser(){
+    this.center = this.userCoord
+    this.zoom = 18
+  }
+  openFilter(){
+    this.modalFilter = true
+  }
+  closeFilter(){
+    this.modalFilter = false
+  }
+
+
   //OnInit, set markers from BDD
   setMarkers(){
     this.loading = true
@@ -148,24 +194,7 @@ export class IndexComponent {
      })
   }
 
-  checkIcon(cat:string){
-    var Icon= this.glassBin
-    // TODO: change the value name of the category related to the db
-    switch(cat){
-      case"Autre": Icon = this.otherBin; break;
-      case"Verre":  Icon = this.glassBin; break;
-      case"Recyclage":  Icon = this.recycleBin; break;
-      case"Bois":  Icon = this.woodBin; break;
-      case"Ordures ménagères":  Icon = this.wasteBin; break;
-      case"Cartons":  Icon = this.cardboardBin; break;
-      case"Métal":  Icon = this.metalBin; break;
-      case"Composte": Icon = this.compostBin; break;
-      case"Plastique":  Icon = this.plasticBin; break;
-      case"Vêtements": Icon = this.clothesBin; break;
-      default: Icon = this.otherBin; break;
-    }
-    return Icon
-  }
+
 
   filter(cat:string){
     this.loading = true
@@ -198,30 +227,45 @@ export class IndexComponent {
      })
   }
 
-  //MAP LEAFLET PARAMS
-  layers = L.markerClusterGroup()
-  center = L.latLng(49.443232, 1.099971 )
-  zoom = 10
-  options = {
-    zoomControl:false,
-    layers: [
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-    ],
-  };
-
-
-
   //OnInit
   ngAfterViewInit(): void {
   this.setMarkers()
   this.trackMe()
   this.routing.addTo(this.map)
   this.getPosition()
+  this.checkCookie()
 
+  this.userId = this.tokenservice.getUser().userId;
+  if(this.userId != undefined){
+    this.userservice.getUserById(this.userId).subscribe({
+      next: data => {
+        this.userWallet = data.wallet;
+        this.userTrees = data.trees;
+
+      }
+    });
+  }
   }
 
 //Définir les icons
-
+checkIcon(cat:string){
+  var Icon= this.glassBin
+  // TODO: change the value name of the category related to the db
+  switch(cat){
+    case"Autre": Icon = this.otherBin; break;
+    case"Verre":  Icon = this.glassBin; break;
+    case"Recyclage":  Icon = this.recycleBin; break;
+    case"Bois":  Icon = this.woodBin; break;
+    case"Ordures ménagères":  Icon = this.wasteBin; break;
+    case"Cartons":  Icon = this.cardboardBin; break;
+    case"Métal":  Icon = this.metalBin; break;
+    case"Composte": Icon = this.compostBin; break;
+    case"Plastique":  Icon = this.plasticBin; break;
+    case"Vêtements": Icon = this.clothesBin; break;
+    default: Icon = this.otherBin; break;
+  }
+  return Icon
+}
 cardboardBin = L.icon({
   iconUrl: 'assets/images/iconBin/cardboardBin.png',
   iconSize: [30, 30],
@@ -278,6 +322,4 @@ userMarker = L.icon({
   iconAnchor: [20, 25],
 
 })
-
-
 }

@@ -1,2 +1,16 @@
+<div>
+  <div class="absolute mx-auto bg-light bottom-0 h-48 w-80 md:w-96 left-0 right-0 rounded-t p-3 shadow-md" *ngIf="popupCookie">
+    <h2 class="text-primary pt-6 md:text-xl text-center" >Voulez-vous accepter les cookies ? </h2>
 
+    <div class="flex justify-around  pt-8">
+      <button class="text-sm sm:text-md bg-primary px-10 py-2 rounded" (click)="acceptCookies()">Accepter</button>
+      <button class="text-sm sm:text-md bg-hover px-10 py-2 rounded" (click)="refuseCookies()">Refuser</button>
+    </div>
+
+    <div class="text-xs text-center flex flex-col justify-end pt-8">
+      <a href="/tos" >Politique de confidentialité</a>
+    </div>
+
+    </div>
+</div>
 
