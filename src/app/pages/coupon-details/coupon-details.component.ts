@@ -19,6 +19,9 @@ export class CouponDetailsComponent implements OnInit {
   toggleMenu(){
     this.isMenuOpen= !this.isMenuOpen
   }
+  back(url:string){
+    this.router.navigateByUrl('/'+url);
+  }
   logout(){
     this.tokenStorage.signOut()
     this.router.navigateByUrl('/')
