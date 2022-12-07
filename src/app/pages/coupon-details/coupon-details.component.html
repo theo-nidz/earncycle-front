@@ -1,25 +1,27 @@
 <app-header-log [title]="title">test</app-header-log>
 
-<div class=" container mx-auto   bg-light p-10 max-w-lg rounded-lg mt-10">
-  <div class="flex justify-center items-center flex-col">
+<div class="">
+  <h2>{{voucher?.name}}</h2>
+  <h3>{{partner}}</h3>
+  <img src="{{voucher?.image}}" alt="{{voucher?.name}}">
+  <p>{{voucher?.description}}</p>
+  <p>{{startDate}}</p>
+  <p>{{endDate}}</p>
+  <p>{{voucher?.price}}</p>
+  <p>{{voucher?.limitUse}}</p>
 
-    <div>
-<!--      <img class="profilePicture"-->
-<!--           src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"-->
-<!--           alt="">-->
-<!--    </div>-->
-  </div>
-  <h2 class="text-center text-xl font-bold">Mon coupon</h2>
+</div>
+<!-- <div class=" container mx-auto   bg-light p-10 max-w-lg rounded-lg mt-10">
+<h2 class="text-center text-xl font-bold">Mon coupon</h2>
+<div class="">
+
   <div class="">
-
-    <div class="">
-      <img class="p-5 couponDetailsCard" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmGxzEe3HaPa0F5I-zKxkHAykm4bXAlMaljpFl6X7oS3m_8KS-XarneW0OudmN6K_P8Q&usqp=CAU" alt="">
-      <div class="text-center">
-        <h3>Lieu : Pokébowl</h3>
-        <p>Promotion : -30%</p>
-        <p>Date d'expiration : 10/12/2022</p>
-      </div>
+    <img class="p-5 couponDetailsCard" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmGxzEe3HaPa0F5I-zKxkHAykm4bXAlMaljpFl6X7oS3m_8KS-XarneW0OudmN6K_P8Q&usqp=CAU" alt="">
+    <div class="text-center">
+      <h3>Lieu : Pokébowl</h3>
+      <p>Promotion : -30%</p>
+      <p>Date d'expiration : 10/12/2022</p>
     </div>
   </div>
-</div>
+</div> -->
 

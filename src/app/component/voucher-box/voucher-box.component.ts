@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Voucher } from 'src/app/model/voucher.model';
+import { ToolBox } from 'src/app/utils/toolBox';
 import { VoucherService } from 'src/app/_services/voucher.service';
 
 @Component({
@@ -30,11 +31,11 @@ export class VoucherBoxComponent implements OnInit {
     this.description = this.VoucherData.description;
     this.price = this.VoucherData.price;
     this.limitUse = this.VoucherData.limitUse;
-    this.startDate = this.humanReadDate(this.VoucherData.startDate);
-    this.endDate = this.humanReadDate(this.VoucherData.endDate);
+    this.startDate = ToolBox.humanReadDate(this.VoucherData.startDate);
+    this.endDate = ToolBox.humanReadDate(this.VoucherData.endDate);
     
     if(this.VoucherData.partnerId !== undefined){
-      const partnerId = parseInt(this.VoucherData.partnerId.split('/').pop()!);
+      const partnerId = ToolBox.getIdFromUrl(this.VoucherData.partnerId);;
       this.partnerService.getPartnerById(partnerId ,true).subscribe({
         next: data => {
           this.partner = data.name;
@@ -49,10 +50,4 @@ export class VoucherBoxComponent implements OnInit {
       });
     }
   }
-
-  humanReadDate(date: Date):string{
-    const d = new Date(date);
-    return d.toLocaleDateString("fr-FR", {month: 'long', day: 'numeric', year: 'numeric'});
-  }
-
 }
