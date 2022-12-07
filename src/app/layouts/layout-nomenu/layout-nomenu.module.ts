@@ -7,9 +7,9 @@ import { RouterModule } from '@angular/router';
 import { RegisterComponent } from 'src/app/pages/register/register.component';
 import { TosComponent } from 'src/app/pages/tos/tos.component';
 import { ResetpwdComponent } from 'src/app/pages/resetpwd/resetpwd.component';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfosComponent } from 'src/app/pages/infos/infos.component';
+import { IntroComponent } from 'src/app/pages/intro/intro.component';
 
 
 
@@ -21,6 +21,7 @@ import { InfosComponent } from 'src/app/pages/infos/infos.component';
     TosComponent,
     ResetpwdComponent,
     InfosComponent,
+    IntroComponent,
   ],
   imports: [
     CommonModule,

@@ -51,28 +51,42 @@
 <div class="absolute w-full h-full top-0 z-50 achievement--bg" *ngIf="userAchievementPopup">
   <div class="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4  max-w-xs achievement--inner">
     <img src="assets/images/global/cancel.svg" class="w-6 h-6 hover:cursor-pointer absolute top-3 right-3" (click)="closeAchievement()" />
-    <div class="success-checkmark">
-      <div class="check-icon">
-        <span class="icon-line line-tip"></span>
-        <span class="icon-line line-long"></span>
-        <div class="icon-circle"></div>
-        <div class="icon-fix"></div>
+    <div *ngIf="userAchievementLogged">
+      <div class="success-checkmark">
+        <div class="check-icon">
+          <span class="icon-line line-tip"></span>
+          <span class="icon-line line-long"></span>
+          <div class="icon-circle"></div>
+          <div class="icon-fix"></div>
+        </div>
+      </div>
+      <div class="achievement--info">
+        <h2 class="text-primary ">Trajet Validé !</h2>
+        <p>Vous avez planté 1 arbre ! 🌳</p>
+      <div class="flex items-center gap-2">
+        <p> + {{coins}} pièces </p> <img class="w-8 h-8" src="/assets/coins.svg" alt="image pièce profile"/>
+      </div>
+       <a href="/coupon">Voir les offres</a>
       </div>
     </div>
-    <div class="achievement--info">
-      <h2 class="text-primary ">Trajet Validé !</h2>
-      <p>Vous avez planté 1 arbre !</p>
-    <div class="flex items-center gap-2">
-      <p> + {{coins}} pièces </p> <img class="w-8 h-8" src="/assets/coins.svg" alt="image pièce profile"/>
+    <div *ngIf="!userAchievementLogged">
+      <div class="achievement--info">
+        <h2 class="text-primary ">Trajet Validé !</h2>
+        <p class="pt-4">Vous n'avez pas encore de compte !</p>
+        <p class="text-center pt-2">Créez-vous un compte dès maintenant pour gagner des pièces et les utiliser dans les <a href="/coupon" class="hover:underline">offres</a>.</p>
+       <a href="/register" class="pt-4 hover:underline">Je crée mon compte !</a>
+      </div>
     </div>
-     <a href="/coupon">Voir les offres</a>
-    </div>
+
   </div>
 </div>
 
 <div class="absolute w-full h-full top-0 z-50 loader--bg" *ngIf="loading">
-  <div class="loader--loading relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4 before:bg-primary " ><span class="flex flex-col items-center "> <img class="animate-spin " src="assets/images/global/loader.png" alt="Loading" draggable="false">  Loading</span></div>
-
+  <div class="loader--loading relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4 before:bg-primary " >
+    <span class="flex flex-col items-center ">
+      <img class="animate-spin " src="assets/images/global/loader.png" alt="Loading" draggable="false">
+      Chargement...</span>
+  </div>
 </div>
 
 
