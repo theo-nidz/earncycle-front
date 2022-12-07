@@ -21,7 +21,8 @@ import { IntroComponent } from 'src/app/pages/intro/intro.component';
     TosComponent,
     ResetpwdComponent,
     InfosComponent,
-    IntroComponent,
+    IntroComponent
+
   ],
   imports: [
     CommonModule,
@@ -29,9 +30,6 @@ import { IntroComponent } from 'src/app/pages/intro/intro.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-  ],
-  exports:[
-    SharedModule,
   ]
 })
 export class LayoutNomenuModule { }

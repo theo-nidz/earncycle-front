@@ -8,8 +8,6 @@ import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { ErrorComponent } from 'src/app/pages/error/error.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { CouponComponent } from 'src/app/pages/coupon/coupon.component';
-import { CouponDetailsComponent } from 'src/app/pages/coupon-details/coupon-details.component';
 
 
 
@@ -20,18 +18,14 @@ import { CouponDetailsComponent } from 'src/app/pages/coupon-details/coupon-deta
     IndexComponent,
     ProfileComponent,
     ErrorComponent,
-    CouponComponent,
-    CouponDetailsComponent
+
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
     LeafletModule,
-    LeafletMarkerClusterModule,
-  ],
-  exports:[
-    SharedModule,
+    LeafletMarkerClusterModule
   ]
 })
 export class LayoutMenuModule { }

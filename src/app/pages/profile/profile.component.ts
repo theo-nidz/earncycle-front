@@ -2,32 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { UserService } from 'src/app/_services/user.service';
 import {Router} from "@angular/router";
-// import { HeaderLogComponent } from 'src/app/component/header-log/header-log.component';
 
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  // providers: [HeaderLogComponent]
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
   id: number | undefined;
   user?: any;
-  isMenuOpen = false;
-  title:string = 'Profile';
-  isLogged:boolean = !!this.tokenStorage.getToken();
+  isMenuOpen = false
 
   toggleMenu(){
     this.isMenuOpen= !this.isMenuOpen
   }
-  back(url:string){
-    this.router.navigateByUrl('/'+url);
-  }
   logout(){
     this.tokenStorage.signOut()
     this.router.navigateByUrl('/')
-    window.location.reload();
   }
 
   constructor(private tokenStorage: TokenStorageService, private userService: UserService , private router:Router) { }

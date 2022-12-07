@@ -13,12 +13,11 @@ export class AuthRouterGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       // TODO To delete
     console.log('authGuard#canActivate called');
-    console.info('AppComponent.getIsLoggedIn(): ' + AppComponent.getIsLoggedIn());
-    if (AppComponent.getIsLoggedIn() && AppComponent.getIsAdmin()) {
+    if (AppComponent.isLoggedIn && AppComponent.isAdmin) {
       // Add link to admin page
       return true;
     }
-    if (AppComponent.getIsLoggedIn() && AppComponent.getIsUser()) {
+    if (AppComponent.isLoggedIn && AppComponent.isUser) {
       return true;
     }
     return this.router.parseUrl('/login');

@@ -10,9 +10,9 @@ import { environment } from 'src/environments/environment';
 export class AppComponent implements OnInit {
   title = 'earn-cycle';
   private roles: string[] = [];
-  static isAdmin: boolean = false;
-  static isUser: boolean = false;
-  static isLoggedIn: boolean = false;
+  static isAdmin = false;
+  static isUser = false;
+  static isLoggedIn = false;
   username?: string;
 
   constructor(private tokenStorageService: TokenStorageService) { }
@@ -30,16 +30,7 @@ export class AppComponent implements OnInit {
       this.username = user.username;
     }
   }
-  static getIsLoggedIn(): boolean {
-    return AppComponent.isLoggedIn;
-  }
-  static getIsAdmin(): boolean {
-    return AppComponent.isAdmin;
-  }
-  static getIsUser(): boolean {
-    return AppComponent.isUser;
-  }
-  // to remove
+
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();

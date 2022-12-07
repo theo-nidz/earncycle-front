@@ -88,7 +88,7 @@ const routes: Routes = [
 
       },
       {
-        path:'coupon-details/:id',
+        path:'coupon-details',
         component: CouponDetailsComponent
       },
     ]

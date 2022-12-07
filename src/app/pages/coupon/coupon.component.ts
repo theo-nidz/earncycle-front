@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { VoucherService } from 'src/app/_services/voucher.service';
 // Type
 import { Voucher } from 'src/app/model/voucher.model';
-import { TokenStorageService } from 'src/app/_services/token-storage.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coupon',
@@ -12,23 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CouponComponent implements OnInit {
   voucherList: Voucher[] = [];
-  isMenuOpen = false;
-  title:string = 'Coupons';
-  isLogged:boolean = !!this.tokenStorage.getToken();
-
-  toggleMenu(){
-    this.isMenuOpen= !this.isMenuOpen
-  }
-  back(url:string){
-    this.router.navigateByUrl('/'+url);
-  }
-  logout(){
-    this.tokenStorage.signOut()
-    this.router.navigateByUrl('/')
-    window.location.reload();
-  }
-
-  constructor(private voucher: VoucherService, private tokenStorage: TokenStorageService,  private router:Router) { }
+  constructor(private voucher: VoucherService) { }
 
   ngOnInit(): void {
     this.voucher.getAllVoucher(true).subscribe({

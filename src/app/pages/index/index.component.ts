@@ -1,6 +1,4 @@
-import { CouponDetailsComponent } from './../coupon-details/coupon-details.component';
-import { Component, createPlatform,ElementRef, OnInit, ViewChild } from '@angular/core';
-
+import { Component, createPlatform, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { TokenStorageService } from 'src/app/_services/token-storage.service'
