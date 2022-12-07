@@ -15,8 +15,8 @@ export class VoucherBoxComponent implements OnInit {
   description!: string;
   price!: number;
   limitUse!: number;
-  startDate!: Date;
-  endDate!: Date;
+  startDate!: string;
+  endDate!: string;
 
   @Input()
   VoucherData!: Voucher;
@@ -30,8 +30,8 @@ export class VoucherBoxComponent implements OnInit {
     this.description = this.VoucherData.description;
     this.price = this.VoucherData.price;
     this.limitUse = this.VoucherData.limitUse;
-    this.startDate = this.VoucherData.startDate;
-    this.endDate = this.VoucherData.endDate;
+    this.startDate = this.humanReadDate(this.VoucherData.startDate);
+    this.endDate = this.humanReadDate(this.VoucherData.endDate);
     
     if(this.VoucherData.partnerId !== undefined){
       const partnerId = parseInt(this.VoucherData.partnerId.split('/').pop()!);
@@ -48,6 +48,11 @@ export class VoucherBoxComponent implements OnInit {
         }
       });
     }
+  }
+
+  humanReadDate(date: Date):string{
+    const d = new Date(date);
+    return d.toLocaleDateString("fr-FR", {month: 'long', day: 'numeric', year: 'numeric'});
   }
 
 }
