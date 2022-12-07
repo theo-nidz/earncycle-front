@@ -18,18 +18,6 @@ export class ProfileComponent {
   title:string = 'Profile';
   isLogged:boolean = !!this.tokenStorage.getToken();
 
-  toggleMenu(){
-    this.isMenuOpen= !this.isMenuOpen
-  }
-  back(url:string){
-    this.router.navigateByUrl('/'+url);
-  }
-  logout(){
-    this.tokenStorage.signOut()
-    this.router.navigateByUrl('/')
-    window.location.reload();
-  }
-
   constructor(private tokenStorage: TokenStorageService, private userService: UserService , private router:Router) { }
 
   ngOnInit(): void {

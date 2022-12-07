@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { VoucherService } from 'src/app/_services/voucher.service';
 import { Voucher } from 'src/app/model/voucher.model';
+import { ToolBox } from 'src/app/utils/toolBox';
 
 @Component({
   selector: 'app-coupon-details',
@@ -11,22 +12,14 @@ import { Voucher } from 'src/app/model/voucher.model';
 })
 export class CouponDetailsComponent implements OnInit {
   isMenuOpen = false;
-  title:string = 'Coupons';
+  title:string = 'Coupon Details';
   isLogged:boolean = !!this.tokenStorage.getToken();
   idVoucher = this.route.snapshot.paramMap.get('id');
   voucher?: Voucher;
+  startDate?: string;
+  endDate?: string;
+  partner?: string;
 
-  toggleMenu(){
-    this.isMenuOpen= !this.isMenuOpen
-  }
-  back(url:string){
-    this.router.navigateByUrl('/'+url);
-  }
-  logout(){
-    this.tokenStorage.signOut()
-    this.router.navigateByUrl('/')
-    window.location.reload();
-  }
   constructor(private route: ActivatedRoute, private voucherService: VoucherService, private tokenStorage: TokenStorageService, private router:Router) { }
 
   ngOnInit(): void {
@@ -35,6 +28,9 @@ export class CouponDetailsComponent implements OnInit {
     this.voucherService.getVoucher(id ,true).subscribe({
       next: data => {
         this.voucher = data;
+        this.startDate = ToolBox.humanReadDate(data.startDate);
+        this.endDate = ToolBox.humanReadDate(data.endDate);
+        this.getPartner(data.partnerId);
         console.log(data);
       },
       error: err => {console.log(err)
@@ -47,4 +43,13 @@ export class CouponDetailsComponent implements OnInit {
     });
   }
   }
+  getPartner(idRaw: string){
+    const id = ToolBox.getIdFromUrl(idRaw);
+    this.voucherService.getPartnerById(id, false).subscribe({
+      next: data => {
+        this.partner = data.name;
+      }
+    });
+  }
+
 }

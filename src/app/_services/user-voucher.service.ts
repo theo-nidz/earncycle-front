@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserVoucher } from '../model/user-voucher.model';
+import { UserVoucher } from 'src/app/model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,14 @@ export class UserVoucherService {
     this.url = environment.apiUrl + 'user_vouchers';
   }
 
+  // TODO only for admin
+  // getAllUserVoucher(json: boolean, deleted: boolean = false): Observable<any> {
+  //   const request = this.url + (json ? '.json' : '') + '?deleted=' + deleted;
+  //   return this.http.get(request, { responseType: 'json' });
+  // }
 
-  getAllUserVoucher(json: boolean, deleted: boolean = false): Observable<any> {
-    const request = this.url + (json ? '.json' : '') + '?deleted=' + deleted;
-    return this.http.get(request, { responseType: 'json' });
-  }
-
-  getUserVoucher(id: number, json: boolean): Observable<any> {
-    const request = this.url + '/' + id + (json ? '.json' : '');
+  getUserVoucher(): Observable<any> {
+    const request = this.url + '_list';
     return this.http.get(request, { responseType: 'json' });
   }
 

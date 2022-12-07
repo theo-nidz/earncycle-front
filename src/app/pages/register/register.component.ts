@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  title:string = 'Inscription';
 
 
   constructor(private authService: AuthService, private router:Router) {

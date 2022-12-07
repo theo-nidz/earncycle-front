@@ -16,18 +16,6 @@ export class CouponComponent implements OnInit {
   title:string = 'Coupons';
   isLogged:boolean = !!this.tokenStorage.getToken();
 
-  toggleMenu(){
-    this.isMenuOpen= !this.isMenuOpen
-  }
-  back(url:string){
-    this.router.navigateByUrl('/'+url);
-  }
-  logout(){
-    this.tokenStorage.signOut()
-    this.router.navigateByUrl('/')
-    window.location.reload();
-  }
-
   constructor(private voucher: VoucherService, private tokenStorage: TokenStorageService,  private router:Router) { }
 
   ngOnInit(): void {
