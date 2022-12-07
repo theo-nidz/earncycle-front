@@ -28,7 +28,8 @@ const routes: Routes = [
     children:[
       {
         path:'',
-        component:IndexComponent
+        redirectTo:'/index',
+        pathMatch:'full'
       },
       {
         path:'index',

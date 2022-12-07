@@ -12,41 +12,45 @@
 
   *ngIf="options">
   </div>
-  <div class="absolute flex flex-col-reverse right-1 bottom-16 sm:bottom-20 sm:right-3  z-50 gap-1">
-    <button (click)="goUser()" class=" rounded-full bg-primary relative  w-12 h-12 "><img src="assets/images/global/userMarker.png"  class="w-8 h-8 absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></button>
-    <button (click)="openFilter()" class="rounded-full bg-primary w-12 h-12 relative"><img src="assets/images/index/filter.svg" class="w-8 h-8  absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 "></button>
-    <button (click)="userAchievement()" class="rounded-full bg-primary w-12 h-12 relative">Test</button>
+  <div class="absolute flex flex-col-reverse right-1 bottom-20 md:bottom-24 sm:right-3  z-50 gap-1">
+    <button (click)="goUser()" class=" rounded-full bg-primary relative  w-12 h-12  md:w-14 md:h-14 "><img src="assets/images/global/userMarker.png"  class="w-6 h-6  md:w-8 md:h-8 absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></button>
+    <button (click)="openFilter()" class="rounded-full bg-primary  w-12 h-12  md:w-14 md:h-14  relative"><img src="assets/images/index/filter.svg" class="w-6 h-6  absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></button>
+    <button *ngIf="isRoute" (click)="openCancelRoute()" class=" rounded-full bg-primary relative  w-12 h-12  md:w-14 md:h-14 "><img src="assets/images/index/cancelRoute.svg"  class="w-6 h-6  absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4"></button>
+    <button (click)="userAchievement()" class="rounded-full bg-primary  w-12 h-12  md:w-14 md:h-14  relative">Test</button>
 
   </div>
 </div>
 
-<div class="absolute top-0  md:left-3/4 right-0 bottom-0 bg-light z-50 border border-dark rounded overflow-y-auto filterBar" *ngIf="modalFilter == true">
-<div class="flex justify-between p-3"><h2>Filter les poubelles</h2> <div><img src="assets/images/global/cancel.svg" class="w-6 h-6 hover:cursor-pointer" (click)="closeFilter()" /> </div></div>
+<div class="absolute top-0  md:left-3/4 right-0 bottom-0 bg-light z-50 border-l border-dark rounded overflow-y-auto filterBar" *ngIf="modalFilter == true">
+<div class="flex justify-between p-3"><h2 class="pr-5">Filter les poubelles</h2> <div><img src="assets/images/global/cancel.svg" class="w-6 h-6 hover:cursor-pointer" (click)="closeFilter()" /> </div></div>
 <div class="flex flex-col p-3 gap-4">
+
+<p (click)="setMarkers()" *ngIf="filterActive" class="hover:cursor-pointer font-bold">Reinitialiser Filtres</p>
 
  <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Other')">Autre</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Verre')">Verre</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Glass')">Verre</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Ordures ménagères')">Ordures ménagères</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Waste')">Ordures ménagères</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Bois')">Bois</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Wood')">Bois</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Cartons')">Cartons</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Cardboard')">Cartons</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Métal')">Métal</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Metal')">Métal</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Plastique')">Plastique</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Plastic')">Plastique</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Vêtement')">Vêtements</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Clothes')">Vêtements</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Composte')">Composte</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Compost')">Composte</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Recyclage')">Recyclage</button>
+ <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Recycling')">Recyclage</button>
 
- <button class="bg-primary rounded p-3 hover:bg-hover" (click)="setMarkers()">Annuler</button>
 </div>
 </div>
+
+
 
 <div class="absolute w-full h-full top-0 z-50 achievement--bg" *ngIf="userAchievementPopup">
   <div class="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4  max-w-xs achievement--inner">
@@ -78,6 +82,17 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+
+<div class="absolute w-full h-full top-0 z-50 cancel--bg" *ngIf="cancelRoutePopup">
+  <div class="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-light rounded p-4  max-w-xs">
+        <h2 class="text-primary text-center">Voulez-vous annuler votre trajet ?</h2>
+        <div class="flex pt-2 justify-center gap-5">
+          <button (click)="cancelRoute()" class="rounded bg-primary p-2 text-light font-bold hover:bg-hover">Confirmer</button>
+          <button (click)="closeCancelRoute()" class="rounded bg-error p-2 text-light font-bold close">Retour</button>
+        </div>
   </div>
 </div>
 
