@@ -16,17 +16,6 @@ export class CouponDetailsComponent implements OnInit {
   idVoucher = this.route.snapshot.paramMap.get('id');
   voucher?: Voucher;
 
-  toggleMenu(){
-    this.isMenuOpen= !this.isMenuOpen
-  }
-  back(url:string){
-    this.router.navigateByUrl('/'+url);
-  }
-  logout(){
-    this.tokenStorage.signOut()
-    this.router.navigateByUrl('/')
-    window.location.reload();
-  }
   constructor(private route: ActivatedRoute, private voucherService: VoucherService, private tokenStorage: TokenStorageService, private router:Router) { }
 
   ngOnInit(): void {
