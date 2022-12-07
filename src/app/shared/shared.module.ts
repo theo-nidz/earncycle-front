@@ -6,14 +6,14 @@ import { HeaderLogComponent } from '../component/header-log/header-log.component
 
 @NgModule({
   declarations: [
+    HeaderLogComponent,
   ],
   imports: [
     CommonModule,
     LeafletModule,
-    HeaderLogComponent,
   ],
   exports:[
-
+    HeaderLogComponent
   ]
 })
 export class SharedModule { }

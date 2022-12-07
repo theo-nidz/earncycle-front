@@ -20,8 +20,7 @@ import { InfosComponent } from 'src/app/pages/infos/infos.component';
     RegisterComponent,
     TosComponent,
     ResetpwdComponent,
-    InfosComponent
-
+    InfosComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +28,9 @@ import { InfosComponent } from 'src/app/pages/infos/infos.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+  ],
+  exports:[
+    SharedModule,
   ]
 })
 export class LayoutNomenuModule { }

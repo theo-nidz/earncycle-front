@@ -1,6 +1,5 @@
 import { CouponDetailsComponent } from './../coupon-details/coupon-details.component';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import { latLng, tileLayer, Icon, icon, Marker } from "leaflet";
 import 'leaflet-routing-machine';
