@@ -1,1 +1,12 @@
-<p>voucher-list works!</p>
+<app-header-log [title]="title">test</app-header-log>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-1 justify-center p-4">
+    <div *ngFor="let voucher of UserVouchers" class="rounded-md p-2 bg-gradient w-full grid grid-cols-3">
+        <h3 class="col-span-2 text-lg">{{voucher.voucherId.name}}</h3>
+        <p>{{voucher.claim}} / {{voucher.voucherId.limitUse}}</p>
+        <p class="col-span-2">{{voucher.voucherId.partnerName}}</p>
+        <p>{{voucher.voucherId.price}}</p>
+        <p class="col-span-3 text-sm">{{voucher.voucherId.description}}</p>
+        <p class="col-span-3 text-xs">Du {{voucher.voucherId.sDate}} au {{voucher.voucherId.eDate}}</p>
+    </div>
+</div>

@@ -35,7 +35,7 @@ export class VoucherBoxComponent implements OnInit {
     this.endDate = ToolBox.humanReadDate(this.VoucherData.endDate);
     
     if(this.VoucherData.partnerId !== undefined){
-      const partnerId = ToolBox.getIdFromUrl(this.VoucherData.partnerId);;
+      const partnerId = ToolBox.getIdFromUrl(this.VoucherData.partnerId);
       this.partnerService.getPartnerById(partnerId ,true).subscribe({
         next: data => {
           this.partner = data.name;
