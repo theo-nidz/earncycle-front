@@ -32,9 +32,9 @@ export class RubbishService {
   }
 
   /**
-   * 
-   * @param rubbish 
-   * @returns 
+   *
+   * @param rubbish
+   * @returns
    * @example
    * rubbish = {
    * category = id of category
