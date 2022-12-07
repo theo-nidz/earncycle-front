@@ -10,6 +10,7 @@ import { ErrorComponent } from 'src/app/pages/error/error.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CouponComponent } from 'src/app/pages/coupon/coupon.component';
 import { CouponDetailsComponent } from 'src/app/pages/coupon-details/coupon-details.component';
+import { VoucherListComponent } from 'src/app/pages/voucher-list/voucher-list.component';
 
 
 
@@ -21,7 +22,8 @@ import { CouponDetailsComponent } from 'src/app/pages/coupon-details/coupon-deta
     ProfileComponent,
     ErrorComponent,
     CouponComponent,
-    CouponDetailsComponent
+    CouponDetailsComponent,
+    VoucherListComponent,
   ],
   imports: [
     CommonModule,
