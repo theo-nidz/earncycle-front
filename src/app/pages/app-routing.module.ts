@@ -15,6 +15,7 @@ import { CouponComponent } from './coupon/coupon.component';
 import { InfosComponent } from './infos/infos.component';
 import { IntroComponent } from './intro/intro.component';
 import { AuthRouterGuard } from '../_services/auth-router.guard';
+import { VoucherListComponent } from './voucher-list/voucher-list.component';
 
 
 
@@ -51,6 +52,11 @@ const routes: Routes = [
         path:'coupon',
         component: CouponComponent
       },
+      {
+        path:'profile/mes-coupons',
+        component: VoucherListComponent,
+        canActivate: [AuthRouterGuard],
+      }
 
       // TODO create page 404
       // {path: '**', component: Page404},
