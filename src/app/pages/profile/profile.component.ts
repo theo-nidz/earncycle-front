@@ -20,7 +20,7 @@ export class ProfileComponent {
   loading= false
   constructor(private tokenStorage: TokenStorageService, private userService: UserService , private router:Router) { }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.id = this.tokenStorage.getUser().userId;
     }
