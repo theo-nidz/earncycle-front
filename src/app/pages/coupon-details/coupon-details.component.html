@@ -2,14 +2,17 @@
 
 <div class="">
   <h2>{{voucher?.name}}</h2>
-  <h3>{{partner}}</h3>
+  <h3>{{voucher?.partnerId?.name}}</h3>
   <img src="{{voucher?.image}}" alt="{{voucher?.name}}">
   <p>{{voucher?.description}}</p>
   <p>{{startDate}}</p>
   <p>{{endDate}}</p>
   <p>{{voucher?.price}}</p>
   <p>{{voucher?.limitUse}}</p>
-
+  <button (click)="buyVoucher()">buy</button>
+</div>
+<div *ngIf="message">
+  <p>{{message}}</p>
 </div>
 <!-- <div class=" container mx-auto   bg-light p-10 max-w-lg rounded-lg mt-10">
 <h2 class="text-center text-xl font-bold">Mon coupon</h2>

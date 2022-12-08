@@ -9,8 +9,9 @@ export interface userVoucherList {
         image:string;
         limitUse:number;
         name:string;
-        partnerId:string;
-        partnerName:string;
+        partnerId: {
+            name:string;
+        };
         price:number;
         startDate: Date;
         sDate: string;

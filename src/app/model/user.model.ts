@@ -3,9 +3,9 @@ interface UserWallet {
   }
 
 interface UserVoucher {
-    voucherId: number;
-    userId: number;
-    claim: boolean;
+    voucherId: string;
+    userId: string;
+    claim: number;
 }
 
 interface UserUpdate extends User {
