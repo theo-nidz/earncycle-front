@@ -38,6 +38,9 @@ export class VoucherListComponent implements OnInit {
    });
   }
 
+  renderVoucher(voucher : userVoucherList){
+    console.log(voucher);
 
+  }
 
 }
