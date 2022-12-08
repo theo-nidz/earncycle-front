@@ -1,0 +1,45 @@
+<app-header-log [title]="title"></app-header-log>
+
+<div class="container mx-auto bg-light p-10 max-w-lg rounded-lg mt-10  mb-10">
+
+
+
+  <form class="flex flex-col mx-auto gap-4">
+
+    <div class="mb-4 relative">
+      <label for="email" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Email</label>
+      <input
+        class="form-control"
+        name="email"
+        type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:value-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" value={{user.email}} required="" >
+      <div class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full">
+      </div>
+    </div>
+
+    <div class="mb-4 relative">
+      <label for="username" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Nom d'utilisateur</label>
+      <input
+        class="form-control"username
+        name="username"
+        type="username" id="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:value-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" value={{user.lname}} required="" >
+      <div class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full">
+      </div>
+    </div>
+
+    <div class="mb-4 relative">
+      <label for="pwd" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Mot de passe</label>
+      <input
+        class="form-control"
+        name="pwd"
+        type="pwd" id="pwd" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:value-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" value={{user.password}} required="" >
+      <div class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full">
+      </div>
+    </div>
+
+  </form>
+  <div class="w-9/12  mx-auto my-10 flex items-center justify-center">
+    <button type="submit" class="rounded mt-5 p-3 bg-primary text-light text-center">Enregistrer</button>
+  </div>
+
+
+</div>

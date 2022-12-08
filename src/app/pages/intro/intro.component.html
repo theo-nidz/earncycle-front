@@ -1,16 +1,65 @@
-<div>
+<div class="intro--inner">
+
   <div class="absolute mx-auto bg-light bottom-0 h-48 w-80 md:w-96 left-0 right-0 rounded-t p-3 shadow-md" *ngIf="popupCookie">
+
     <h2 class="text-primary pt-6 md:text-xl text-center" >Voulez-vous accepter les cookies ? </h2>
 
     <div class="flex justify-around  pt-8">
-      <button class="text-sm sm:text-md bg-primary px-10 py-2 rounded" (click)="acceptCookies()">Accepter</button>
-      <button class="text-sm sm:text-md bg-hover px-10 py-2 rounded" (click)="refuseCookies()">Refuser</button>
+      <button class="text-sm sm:text-md bg-primary hover:bg-hover px-10 py-2 rounded" (click)="acceptCookies()">Accepter</button>
+      <button class="text-sm sm:text-md bg-error px-10 py-2 rounded refuse" (click)="refuseCookies()">Refuser</button>
     </div>
 
     <div class="text-xs text-center flex flex-col justify-end pt-8">
-      <a href="/tos" class="font-bold">Politique de confidentialité</a>
+      <a href="/tos" class="font-bold hover:underline">Politique de confidentialité</a>
     </div>
 
-    </div>
+  </div>
+
+<div class="mainIntro grid h-screen place-items-center" *ngIf="step === 0">
+  <div class="logoIntro flex content-center flex-col text-center -mt-24">
+    <img src="/assets/images/logoearncycle.svg" alt="Earncycle Logo">
+    <h1 class="text-light text-center font-bold text-4xl sm:text-5xl md:text-6xl">EARNCYCLE</h1>
+  </div>
+  <button (click)="toStep(1)" class="rounded-full flex justify-between items-center bg-light w-32 p-2 absolute bottom-5 shadow-md animate-bounce">Suivant <img src="/assets/images/intro/rightArrow.svg" alt="" class="w-8 h-8"></button>
 </div>
 
+<div class="mainIntro grid h-screen place-items-center" *ngIf="step === 1">
+  <div class="logoIntro flex content-center flex-col text-center gap-y-10">
+    <img class="w-full h-40 md:h-60" src="/assets/images/character1.svg" alt="">
+    <h2 class="text-light -bold text-2xl max-w-xs md:max-sm: mx-auto">Plus besoin d'attendre un camion poubelle grâce à <strong>Earncycle</strong> </h2>
+    <button (click)="toStep(2)" class="rounded-full flex justify-between items-center bg-light w-32 mx-auto p-2 shadow-md">Suivant <img src="/assets/images/intro/rightArrow.svg" alt="" class="w-8 h-8"></button>
+  </div>
+  <div class="dotIntro text-center flex justify-center gap-x-5 absolute bottom-4">
+    <button (click)="toStep(1)"><i class="fa-solid fa-circle "></i></button>
+    <button (click)="toStep(2)"><i class="fa-solid fa-circle text-grey"></i></button>
+    <button (click)="toStep(3)"><i class="fa-solid fa-circle text-grey" ></i></button>
+  </div>
+</div>
+
+
+<div class="mainIntro grid h-screen place-items-center" *ngIf="step === 2">
+  <div class="logoIntro flex content-center flex-col text-center gap-y-10">
+    <img class="w-full h-40 md:h-60" src="/assets/images/character2.svg" alt="">
+    <h2 class="text-light -bold text-2xl max-w-xs md:max-sm: mx-auto">Avec <strong>Earncycle</strong>, vous pouvez facilement trouver la poubelle adaptée à vos déchets la plus proche</h2>
+    <button (click)="toStep(3)" class="rounded-full flex justify-between items-center bg-light w-32 mx-auto p-2 shadow-md">Suivant <img src="/assets/images/intro/rightArrow.svg" alt="" class="w-8 h-8"></button>
+  </div>
+  <div class="dotIntro text-center flex justify-center gap-x-5 absolute bottom-4">
+    <button (click)="toStep(1)"><i class="fa-solid fa-circle text-grey"></i></button>
+    <button (click)="toStep(2)"><i class="fa-solid fa-circle "></i></button>
+    <button (click)="toStep(3)"><i class="fa-solid fa-circle text-grey" ></i></button>
+  </div>
+</div>
+
+
+<div class="mainIntro grid h-screen place-items-center" *ngIf="step === 3">
+  <div class="logoIntro flex content-center flex-col text-center gap-y-10">
+    <img class="w-full h-40 md:h-60" src="/assets/images/character3.svg" alt="">
+    <h2 class="text-light -bold text-2xl max-w-xs md:max-sm: mx-auto">La vie est plus simple et vous faites un <strong>geste pour la planète</strong>, tout en étant <strong>récompensé</strong> !</h2>
+    <a routerLink="/index" class="rounded-full flex justify-between items-center bg-light w-32 mx-auto p-2 shadow-md">Découvrir <img src="/assets/images/intro/rightArrow.svg" alt="" class="w-8 h-8"></a>
+  </div>
+  <div class="dotIntro text-center flex justify-center gap-x-5 absolute bottom-4">
+    <button (click)="toStep(1)"><i class="fa-solid fa-circle text-grey"></i></button>
+    <button (click)="toStep(2)"><i class="fa-solid fa-circle text-grey"></i></button>
+    <button (click)="toStep(3)"><i class="fa-solid fa-circle" ></i></button>
+  </div>
+</div>

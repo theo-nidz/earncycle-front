@@ -17,7 +17,7 @@ export class UserService {
     return this.http.get(this.url + '/' + id, { responseType: 'json' });
   }
 
-  updateUserersonalInfo(id: number, data: UserUpdate): Observable<any> {
+  updateUserPersonalInfo(id: number, data: UserUpdate): Observable<any> {
     return this.http.put(this.url + '/' + id, data, { responseType: 'json' });
   }
 

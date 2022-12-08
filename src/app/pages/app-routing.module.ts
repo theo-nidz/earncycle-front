@@ -15,7 +15,10 @@ import { CouponComponent } from './coupon/coupon.component';
 import { InfosComponent } from './infos/infos.component';
 import { IntroComponent } from './intro/intro.component';
 import { AuthRouterGuard } from '../_services/auth-router.guard';
+import {CompteComponent} from "./compte/compte.component";
 import { VoucherListComponent } from './voucher-list/voucher-list.component';
+
+
 
 
 
@@ -38,6 +41,11 @@ const routes: Routes = [
       {
         path:'profile',
         component:ProfileComponent,
+        canActivate: [AuthRouterGuard],
+      },
+      {
+        path:'compte',
+        component:CompteComponent,
         canActivate: [AuthRouterGuard],
       },
 
