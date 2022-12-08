@@ -12,7 +12,7 @@ export class AuthRouterGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       // TODO To delete
-    console.log('authGuard#canActivate called');
+    
     console.info('AppComponent.getIsLoggedIn(): ' + AppComponent.getIsLoggedIn());
     if (AppComponent.getIsLoggedIn() && AppComponent.getIsAdmin()) {
       // Add link to admin page
@@ -23,5 +23,5 @@ export class AuthRouterGuard implements CanActivate {
     }
     return this.router.parseUrl('/login');
   }
-  
+
 }

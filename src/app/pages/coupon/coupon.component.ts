@@ -22,7 +22,7 @@ export class CouponComponent implements OnInit {
     this.voucher.getAllVoucher(true).subscribe({
       next: data => {
         this.voucherList = data;
-        console.log(data);
+       
       },
       error: err => {console.log(err)
         if (err.error) {

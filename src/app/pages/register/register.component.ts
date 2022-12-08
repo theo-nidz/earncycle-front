@@ -28,13 +28,8 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router:Router) {
 
   }
-
-  isLogged(){
-    console.log(window.localStorage)
-
-  }
   ngOnInit(): void {
-this.isLogged()
+
   }
 
 
@@ -60,7 +55,7 @@ this.isLogged()
       }else{
         this.authService.register(this.form).subscribe({
           next: data => {
-            console.log(data);
+           
             this.isSuccessful = true;
             this.isSignUpFailed = false;
 

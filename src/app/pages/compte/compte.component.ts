@@ -40,13 +40,13 @@ export class CompteComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.id = this.tokenStorage.getUser().userId;
-      console.log(this.id);
+
     }
     if (this.id != undefined) {
       this.userService.getUserById(this.id).subscribe({
         next: data => {
           this.user = data;
-          console.log(data);
+        
         },
         error: err => {
           console.log(err)

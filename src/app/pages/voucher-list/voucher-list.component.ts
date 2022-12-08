@@ -19,7 +19,7 @@ export class VoucherListComponent implements OnInit {
       next: data => {
         this.UserVouchers = data;
         this.processData();
-        
+
       },
       error: err => {console.log(err)
         if (err.error) {
@@ -38,9 +38,6 @@ export class VoucherListComponent implements OnInit {
    });
   }
 
-  renderVoucher(voucher : userVoucherList){
-    console.log(voucher);
-    
-  }
+
 
 }

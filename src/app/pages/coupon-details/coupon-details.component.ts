@@ -36,7 +36,7 @@ export class CouponDetailsComponent implements OnInit {
           this.voucher = data;
           this.startDate = ToolBox.humanReadDate(data.startDate);
           this.endDate = ToolBox.humanReadDate(data.endDate);
-          console.log(data);
+
         },
         error: err => {
           console.log(err)
@@ -55,7 +55,7 @@ export class CouponDetailsComponent implements OnInit {
       this.userService.getUserById(this.userId).subscribe({
         next: data => {
           this.currentUser = data;
-          console.log(data);
+
         },
         error: err => {console.log(err)
           if (err.error) {
@@ -80,8 +80,7 @@ export class CouponDetailsComponent implements OnInit {
         next: data => {
           if (data.length > 0) {
             const { id, userId, voucherId, claim } = data[0];
-            console.log(data);
-            console.log(id, userId, voucherId.id, claim, voucherId.limitUse);
+
             if (claim < voucherId.limitUse && this.voucher!.price < this.currentUser?.wallet) {
               const userVoucher: UserVoucher = {
                 userId: userId,
@@ -89,14 +88,12 @@ export class CouponDetailsComponent implements OnInit {
                 claim: claim + 1
               }
               console.table(userVoucher);
-              console.log(id);
               this.userVoucherService.updateUserVoucher(id, userVoucher).subscribe({
                 next: data => {
-                  console.log(data);
                   this.debitAccount(this.voucher!.price);
                   this.message = "Coupon ajouté";
                   this.router.navigate(['/profile/mes-coupons']);
-                  
+
                 },
                 error: err => {
                   console.log(err)
@@ -116,7 +113,6 @@ export class CouponDetailsComponent implements OnInit {
           } else {
             this.userVoucherService.createUserVoucher(userVoucherNew).subscribe({
               next: data => {
-                console.log(data);
                 this.debitAccount(this.voucher!.price);
                 this.message = "Coupon ajouté";
                 this.router.navigate(['/profile/mes-coupons']);
@@ -145,7 +141,6 @@ export class CouponDetailsComponent implements OnInit {
 
   debitAccount(amount: number) {
     const soustract = this.currentUser?.wallet - amount;
-    console.log(soustract);
     if(soustract >= 0){
       const userWallet: UserWallet = {
         wallet: soustract,
@@ -153,12 +148,12 @@ export class CouponDetailsComponent implements OnInit {
       this.userService.updateUserWallet(this.userId!, userWallet).subscribe({
         next: data => {
           console.log(data);
-          console.info("compte débité");
+          console.info("Compte débité avec succès !");
         }
       });
     } else {
       console.info("pas assez d'argent");
-      this.message = "pas assez d'argent";
+      this.message = "Vous n'avez pas assez de pièces sur votre compte !";
     }
   }
 

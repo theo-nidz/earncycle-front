@@ -80,8 +80,6 @@ export class IndexComponent {
   // Achievement
    userAchievement(){
     if(window.sessionStorage.getItem('auth-user')){
-      console.log('Tree',this.userTrees)
-      console.log('Wallet',this.userWallet)
 
       //Add coins à user
       const coins:number = Math.floor(Math.random() * (20 - 10) + 10);
@@ -203,7 +201,7 @@ export class IndexComponent {
     this.loading = true
     const markerCluster = L.markerClusterGroup()
     this.rubbishService.getAllRubbish(true, false).subscribe((res:any)=>{
-      console.log(res)
+
         res.forEach((key:any) => {
 
           let popupInfo = document.createElement('div')
@@ -236,7 +234,7 @@ export class IndexComponent {
     this.loading = true
     const markerCluster = L.markerClusterGroup()
     this.rubbishService.getRubbishByCategory(cat,true, false).subscribe((res:any)=>{
-      console.log(res)
+     
         res.forEach((key:any) => {
 
           let popupInfo = document.createElement('div')

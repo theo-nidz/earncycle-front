@@ -41,7 +41,7 @@ export class TokenStorageService {
     if (user) {
       const userRole = JSON.parse(atob(user.split('.')[1]));
       // TODO remove this line later
-      console.log(userRole);
+      
       return userRole;
     }
     return {};
