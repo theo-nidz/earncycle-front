@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { userVoucherList } from 'src/app/model/voucher-user.model';
 import { ToolBox } from 'src/app/utils/toolBox';
 import { UserVoucherService } from 'src/app/_services/user-voucher.service';
@@ -12,6 +13,9 @@ import { UserVoucherService } from 'src/app/_services/user-voucher.service';
 export class VoucherListComponent implements OnInit {
   title:string = 'Mes coupons';
   UserVouchers: userVoucherList[] = [];
+  voucherSelected?: userVoucherList;
+  qrCode: any;
+  isModalOpen: boolean = false;
   constructor(private voucherUserServices: UserVoucherService ) { }
 
   ngOnInit(): void {
@@ -19,7 +23,7 @@ export class VoucherListComponent implements OnInit {
       next: data => {
         this.UserVouchers = data;
         this.processData();
-
+        
       },
       error: err => {console.log(err)
         if (err.error) {
@@ -38,9 +42,21 @@ export class VoucherListComponent implements OnInit {
    });
   }
 
-  renderVoucher(voucher : userVoucherList){
-    console.log(voucher);
-
+  toggleModdal(){
+      this.isModalOpen= true;
+      console.log(this.isModalOpen);
   }
+  closeModal(){
+    this.isModalOpen= false;
+    this.voucherSelected = undefined;
+  }
+  renderVoucher(voucher : userVoucherList){
+    this.toggleModdal();
+    console.log(voucher);
+    this.voucherSelected = voucher;
+    // this.qrCode = ToolBox.generateQRCode(this.voucherSelected.urlCode);
+    
+  }
+
 
 }
