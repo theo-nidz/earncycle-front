@@ -1,7 +1,7 @@
 <app-header-log [title]="title">test</app-header-log>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center p-4">
-    <div *ngFor="let voucher of UserVouchers" class="rounded-md p-2 bg-gradient w-full grid grid-cols-4 gap-2 hover:bg-hover" trackby="voucher" >
+    <div *ngFor="let voucher of UserVouchers" class="rounded-md p-2 bg-gradient w-full grid grid-cols-4 gap-2 hover:bg-hover" trackby="voucher" (click)="renderVoucher(voucher)">
         <img class="row-span-4 rounded-lg" src="{{voucher.voucherId.image}}" alt="{{voucher.voucherId.name}}">
         <h3 class="col-span-2 text-lg">{{voucher.voucherId.name}}</h3>
         <p>{{voucher.claim}} / {{voucher.voucherId.limitUse}}</p>
