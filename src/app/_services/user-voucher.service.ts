@@ -16,11 +16,10 @@ export class UserVoucherService {
     this.url = environment.apiUrl + 'user_vouchers';
   }
 
-  // TODO only for admin
-  // getAllUserVoucher(json: boolean, deleted: boolean = false): Observable<any> {
-  //   const request = this.url + (json ? '.json' : '') + '?deleted=' + deleted;
-  //   return this.http.get(request, { responseType: 'json' });
-  // }
+  getAllUserVoucher(json: boolean, voucherId?: number , deleted: boolean = false): Observable<any> {
+    const request = this.url + (json ? '.json' : '') + '?deleted=' + deleted + (voucherId ? '&voucherId.id=' + voucherId : '');
+    return this.http.get(request, { responseType: 'json' });
+  }
 
   getUserVoucher(): Observable<any> {
     const request = this.url + '_list';
