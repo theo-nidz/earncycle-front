@@ -21,11 +21,14 @@
   </div>
 </div>
 
-<div class="absolute top-0  md:left-3/4 right-0 bottom-0 bg-light z-50 border-l border-dark rounded overflow-y-auto filterBar" *ngIf="modalFilter == true">
-<div class="flex justify-between p-3 fixed bg-light md:left-3/4 right-0 border"><h2 class="pr-5">Filter par catégorie</h2> <div><img src="assets/images/global/cancel.svg" class="w-6 h-6 hover:cursor-pointer" (click)="closeFilter()" /> </div></div>
+<div class="absolute top-0 w-52 md:w-auto md:left-3/4 right-0 bottom-0 bg-light z-50 border-l border-dark rounded overflow-y-auto filterBar" *ngIf="modalFilter == true">
+<div class="flex justify-between w-52 md:w-auto fixed p-2 bg-light md:left-3/4 right-0 border"><h2 class="pr-5">Filter par catégorie</h2> <div><img src="assets/images/global/cancel.svg" class="w-6 h-6 hover:cursor-pointer" (click)="closeFilter()" /> </div></div>
 <div class="flex flex-col p-3 gap-4 mt-14">
 
-<p (click)="setMarkers()" *ngIf="filterActive" class="hover:cursor-pointer font-bold">Reinitialiser Filtres</p>
+<div class="flex" (click)="setMarkers()" *ngIf="filterActive" class="hover:cursor-pointer hover:underline">
+  <p class="font-bold">Reinitialiser Filtres</p>
+  <img src="assets/images/index/redoArrow.svg" alt="Icone Reinitialiser" class="w-10 h-10">
+</div>
 
 <button class="bg-primary rounded p-3 hover:bg-hover" (click)="filter('Other')">Autre</button>
 
