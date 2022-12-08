@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import {ActivatedRoute, Router} from "@angular/router";
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -25,11 +26,13 @@ export class RegisterComponent implements OnInit {
   title:string = 'Inscription';
 
 
-  constructor(private authService: AuthService, private router:Router) {
+  constructor(private authService: AuthService, private router:Router, private tokenService: TokenStorageService) {
 
   }
   ngOnInit(): void {
-
+    if (this.tokenService.getToken()) {
+      this.router.navigateByUrl('/index');
+    }
   }
 
 
