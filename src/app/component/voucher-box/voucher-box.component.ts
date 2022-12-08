@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Voucher } from 'src/app/model/voucher.model';
 import { ToolBox } from 'src/app/utils/toolBox';
-import { VoucherService } from 'src/app/_services/voucher.service';
+
 
 @Component({
   selector: 'app-voucher-box',
@@ -22,7 +22,7 @@ export class VoucherBoxComponent implements OnInit {
   @Input()
   VoucherData!: Voucher;
 
-  constructor(private partnerService: VoucherService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.id = this.VoucherData.id;
@@ -31,23 +31,8 @@ export class VoucherBoxComponent implements OnInit {
     this.description = this.VoucherData.description;
     this.price = this.VoucherData.price;
     this.limitUse = this.VoucherData.limitUse;
+    this.partner = this.VoucherData.partnerId?.name;
     this.startDate = ToolBox.humanReadDate(this.VoucherData.startDate);
     this.endDate = ToolBox.humanReadDate(this.VoucherData.endDate);
-    
-    if(this.VoucherData.partnerId !== undefined){
-      const partnerId = ToolBox.getIdFromUrl(this.VoucherData.partnerId);
-      this.partnerService.getPartnerById(partnerId ,true).subscribe({
-        next: data => {
-          this.partner = data.name;
-        },
-        error: err => {console.log(err)
-          if (err.error) {
-            console.error(JSON.parse(err.error).message);
-          } else {
-            console.error("Error with status: " + err.status);
-          }
-        }
-      });
-    }
   }
 }
