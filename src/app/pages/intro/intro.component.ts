@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class IntroComponent implements OnInit {
 
   popupCookie = false
+  step=0
 
   constructor() { }
   getCookie(name:string) {
@@ -22,6 +23,9 @@ export class IntroComponent implements OnInit {
     return null;
   }
 
+  toStep(num:number){
+    this.step = num
+  }
   acceptCookies(){
     document.cookie = "cookie=true;";
     this.popupCookie = false
@@ -29,9 +33,6 @@ export class IntroComponent implements OnInit {
   refuseCookies(){
     document.cookie = "cookie=false;";
     this.popupCookie = false
-  }
-  delCook(){
-    document.cookie = "cookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
   }
   ngOnInit(): void {
     if(this.getCookie('cookie') === null){

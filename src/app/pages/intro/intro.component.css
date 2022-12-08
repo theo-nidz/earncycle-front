@@ -1,7 +1,11 @@
-.mainIntro {
-  background: linear-gradient(#25d0b6, #25d08c);
-  height: 100vh;
-}
+.intro--inner {
+    background: linear-gradient(#25d0b6, #25d08c);
+    height: 100vh;
+  }
+
+.refuse:hover{
+  background-color: #BC2C2C ;
+  }
 
 
 
