@@ -12,6 +12,7 @@ export interface userVoucherList {
         partnerId: {
             name:string;
         };
+        urlCode:string;
         price:number;
         startDate: Date;
         sDate: string;
