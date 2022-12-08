@@ -2,7 +2,7 @@
 .containerCoupon {
   position: relative;
   display: grid;
-  grid-template-columns: (1, 1fr);
+  /*grid-template-columns: (1, 1fr);*/
   text-align: center;
   /*background: #ECECEC;*/
   max-width: 1000px;

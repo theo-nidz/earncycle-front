@@ -1,7 +1,10 @@
 <app-header-log [title]="title">test</app-header-log>
 
-
-<div class="containerCoupon">
+<div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 content-center rounded-lg text-center mx-5 my-5">
   <app-voucher-box *ngFor="let voucher of voucherList" [VoucherData]="voucher"></app-voucher-box>
 </div>
 
+
+
+<!--  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 content-center rounded-lg text-center mx-5 my-5-->

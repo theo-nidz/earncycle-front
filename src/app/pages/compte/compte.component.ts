@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { UserService } from 'src/app/_services/user.service';
+import {UserUpdate} from "../../model/user.model";
 import {Router} from "@angular/router";
 // import { HeaderLogComponent } from 'src/app/component/header-log/header-log.component';
 
@@ -15,10 +16,17 @@ export class CompteComponent implements OnInit {
 
 
   id: number | undefined;
+  phone?: string;
+  adress?: string;
+  nickname?: string;
   user?: any;
   isMenuOpen = false;
   title: string = 'compte';
   isLogged: boolean = !!this.tokenStorage.getToken();
+
+
+  @Input()
+  UserUpdateData!: UserUpdate;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen
@@ -38,6 +46,12 @@ export class CompteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.adress = this.UserUpdateData.adress;
+    this.phone = this.UserUpdateData.phone;
+    this.nickname = this.UserUpdateData.nickname;
+
+
     if (this.tokenStorage.getToken()) {
       this.id = this.tokenStorage.getUser().userId;
       console.log(this.id);

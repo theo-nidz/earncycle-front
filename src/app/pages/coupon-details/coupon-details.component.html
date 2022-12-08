@@ -1,14 +1,16 @@
 <app-header-log [title]="title">test</app-header-log>
 
-<div class="">
-  <h2>{{voucher?.name}}</h2>
-  <h3>{{partner}}</h3>
-  <img src="{{voucher?.image}}" alt="{{voucher?.name}}">
-  <p>{{voucher?.description}}</p>
-  <p>{{startDate}}</p>
-  <p>{{endDate}}</p>
-  <p>{{voucher?.price}}</p>
-  <p>{{voucher?.limitUse}}</p>
+<div class="flex flex-col content-center justify-center align-center mx-auto max-w-screen-sm my-10 bg-light  rounded-lg">
+<!--  <h2>{{voucher?.name}}</h2>-->
+<!--  <h3>{{partner}}</h3>-->
+  <img class="" src="{{voucher?.image}}" alt="{{voucher?.name}}">
+  <div class="text-center  my-5">
+  <p>Description : {{voucher?.description}}</p>
+  <p>Date de début : {{startDate}}</p>
+  <p>Date d'éxpiration : {{endDate}}</p>
+  <p>Prix : {{voucher?.price}} € </p>
+  <p>Limite : {{voucher?.limitUse}}</p>
+  </div>
 
 </div>
 <!-- <div class=" container mx-auto   bg-light p-10 max-w-lg rounded-lg mt-10">

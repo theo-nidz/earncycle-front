@@ -1,7 +1,10 @@
-<div class="couponCard">
-    <img src="{{image}}" alt="">
-    <h2>{{price}}</h2>
-    <h3>{{partner}}</h3>
-    <p>Du {{startDate}} <br> au {{endDate}}</p>
-    <a href="/coupon-details/{{id}}" class="btnCoupon">Voir</a>
+<div class="couponCard bg-light rounded-lg">
+    <img class="h-screen" src="{{image}}" alt="">
+  <div class="py-5">
+    <h2>Prix : {{price}} €</h2>
+    <h3>Partenaire : {{partner}}</h3>
+    <p class="my-5">Du {{startDate}} <br> au {{endDate}}</p>
+    <a  href="/coupon-details/{{id}}" class="btnCoupon bg-primary rounded-lg px-8 py-3.5 font-bold text-light hover:bg-hover hover:text-light">Voir</a>
+  </div>
 </div>
+
