@@ -12,7 +12,6 @@ import { ResetpwdComponent } from './resetpwd/resetpwd.component';
 import { TosComponent } from './tos/tos.component';
 import { CouponDetailsComponent } from './coupon-details/coupon-details.component';
 import { CouponComponent } from './coupon/coupon.component';
-import { InfosComponent } from './infos/infos.component';
 import { IntroComponent } from './intro/intro.component';
 import { AuthRouterGuard } from '../_services/auth-router.guard';
 import {CompteComponent} from "./compte/compte.component";
@@ -53,10 +52,7 @@ const routes: Routes = [
         path:'error',
         component:ErrorComponent
       },
-      {
-        path:'infos',
-        component: InfosComponent
-      },
+     
       {
         path:'coupon',
         component: CouponComponent

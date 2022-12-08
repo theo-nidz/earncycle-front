@@ -1,5 +1,6 @@
 <app-header-log [title]="title">test</app-header-log>
-<div *ngIf="!isLoggedIn" class="container mx-auto bg-light p-10 max-w-lg rounded-lg mt-10 shadow-xl">
+
+<div *ngIf="!isLoggedIn" class="container mx-auto bg-light mt-32 p-10 max-w-lg rounded-lg shadow-xl">
   <form class="flex flex-col mx-auto gap-4"
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
@@ -55,7 +56,7 @@
     <a href="/register" class="rounded mt-5 p-3 bg-primary text-light text-center hover:bg-hover">Pas encore de compte ?</a>
   </div>
 </div>
-<div class="alert alert-success container mx-auto bg-light p-10 max-w-lg rounded-lg mt-10 shadow-xl text-center flex flex-col gap-4" *ngIf="isLoggedIn">
+<div class="alert alert-success container mx-auto bg-light p-10 max-w-lg rounded-lg mt-28 shadow-xl text-center flex flex-col gap-4" *ngIf="isLoggedIn">
   <p>Vous êtes connecté.</p>
   <a href="/" class="rounded mt-5 p-3 bg-primary text-light text-center hover:bg-hover">Retour a la carte</a>
 </div>

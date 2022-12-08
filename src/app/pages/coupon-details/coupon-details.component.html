@@ -1,9 +1,9 @@
 <app-header-log [title]="title">test</app-header-log>
 
-<div class="">
+<!-- <div class="flex-col flex bg-light">
   <h2>{{voucher?.name}}</h2>
   <h3>{{voucher?.partnerId?.name}}</h3>
-  <img src="{{voucher?.image}}" alt="{{voucher?.name}}">
+  <img src="{{voucher?.image}}" alt="{{voucher?.name}}" class="rounded max-w-sm">
   <p>{{voucher?.description}}</p>
   <p>{{startDate}}</p>
   <p>{{endDate}}</p>
@@ -13,19 +13,18 @@
 </div>
 <div *ngIf="message">
   <p>{{message}}</p>
-</div>
-<div class="container mx-auto bg-light p-10 max-w-lg rounded-lg mt-10">
-<h2 class="text-center text-xl font-bold">Mon coupon</h2>
-<div class="">
+</div> -->
 
-  <div class="">
+
+<div class="flex flex-col justify-center mx-auto bg-light p-10 max-w-lg rounded-lg mt-20">
+<h2 class="text-center text-xl font-bold">Mon coupon</h2>
+
     <img src="{{voucher?.image}}" alt="{{voucher?.name}}">    <div class="text-center">
       <h2>{{voucher?.name}}</h2>
-      <h3>Lieu : {{partner}}</h3>
+      <h3>Lieu : nsm</h3>
       <p>Promotion : {{voucher?.description}}</p>
       <p>Période d'utilisation : {{startDate}}  - {{endDate}}</p>
-  
-    </div>
-  </div>
+
+    
 </div>
 

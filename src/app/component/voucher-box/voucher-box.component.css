@@ -1,38 +1,4 @@
-    .couponCard {
-    background: white;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    gap: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 1rem ;
-  }
-  
-  .couponCard img {
-    width: 100%;
-    height: 50%;
-    object-fit: cover;
-    border-radius: 5px 5px 0 0;
-  }
-  
-  .couponCard h2 {
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-  
-  .btnCoupon {
-    color: white;
-    background: #25D0B6;
-    padding: 0.5rem;
-    border-radius: 5px;
-    font-weight: bold;
-    width: 30%;
-  }
-  
-  .btnCoupon:hover {
-    background: #086375;
-  }
+.button{
+  transition: 0.5s;
+}
 
-  
