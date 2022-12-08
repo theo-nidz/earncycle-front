@@ -1,6 +1,6 @@
 <app-header-log [title]="title">test</app-header-log>
 
-<div class="container mx-auto bg-light shadow-xl p-10 max-w-lg rounded-lg mt-10  mb-10">
+<div class="container mx-auto bg-light shadow-xl p-10 max-w-lg rounded-lg mt-28  mb-10">
 
 <form
 *ngIf="!isSuccessful"
@@ -95,7 +95,7 @@ class="flex flex-col mx-auto gap-4">
           #terms="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && terms.errors }"
       checked id="checkbox-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
-      <label for="checkbox-1" class="font-bold text-sm text-gray-900 dark:text-gray-300">I agree to the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+      <label for="checkbox-1" class="text-sm">I agree to the <a href="/tos" class="text-blue-600 hover:underline font-bold">terms and conditions</a>.</label>
     </div>
     <div class="invalid-feedback alert alert-danger w-full" *ngIf="terms.errors && f.submitted">
       <div class="text-error font-semibold text-center text-sm"  *ngIf="terms.errors['required']">Veuillez Validez les conditions général</div>
@@ -107,7 +107,7 @@ class="flex flex-col mx-auto gap-4">
     Enregistrement échoué !<br />{{ errorMessage }}
   </div>
 </form>
-<div class="w-9/12 border-t-2 border-grey mx-auto my-10 flex items-center justify-center">
+<div class="w-9/12 border-t-2 border-grey mx-auto mt-10 flex items-center justify-center">
   <a href="/login" class="rounded mt-5 p-3 bg-primary text-light text-center hover:bg-hover">Déjà un compte ?</a>
 </div>
 

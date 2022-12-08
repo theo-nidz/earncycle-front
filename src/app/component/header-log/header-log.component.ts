@@ -13,19 +13,34 @@ export class HeaderLogComponent implements OnInit {
   @Input()
   title!: string;
 
-  
-
-  toggleMenu(){
-    this.isMenuOpen= !this.isMenuOpen
-  }
-  logout(){
-    this.tokenStorage.signOut()
-    this.router.navigateByUrl('/')
-    window.location.reload();
-  }
   constructor(private tokenStorage: TokenStorageService , private router:Router) {
    }
 
   ngOnInit(): void {
+  }
+  
+  toggleMenu(){
+    this.isMenuOpen= !this.isMenuOpen
+  }
+  back(){
+    if(this.router.url == '/login'){
+      window.history.back();
+    } else{
+      this.router.navigateByUrl('/');
+    }
+  }
+  logout(){
+    this.tokenStorage.signOut();
+    this.router.navigateByUrl('/');
+    window.location.reload();
+  }
+  login(){
+    this.router.navigateByUrl('/login');
+  }
+  register(){
+    this.router.navigateByUrl('/register');
+  }
+  accountSetup(){
+    this.router.navigateByUrl('/mon-compte');
   }
 }

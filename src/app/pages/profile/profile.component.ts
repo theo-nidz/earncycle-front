@@ -17,13 +17,12 @@ export class ProfileComponent {
   isMenuOpen = false;
   title:string = 'Profile';
   isLogged:boolean = !!this.tokenStorage.getToken();
-
+  loading= false
   constructor(private tokenStorage: TokenStorageService, private userService: UserService , private router:Router) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.id = this.tokenStorage.getUser().userId;
-      console.log(this.id);
     }
     if(this.id != undefined){
       this.userService.getUserById(this.id).subscribe({

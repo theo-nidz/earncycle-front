@@ -1,29 +1,23 @@
 <app-header-log [title]="title">test</app-header-log>
 
-<div class="flex flex-col content-center justify-center align-center mx-auto max-w-screen-sm my-10 bg-light  rounded-lg">
-<!--  <h2>{{voucher?.name}}</h2>-->
-<!--  <h3>{{partner}}</h3>-->
-  <img class="" src="{{voucher?.image}}" alt="{{voucher?.name}}">
-  <div class="text-center  my-5">
-  <p>Description : {{voucher?.description}}</p>
-  <p>Date de début : {{startDate}}</p>
-  <p>Date d'éxpiration : {{endDate}}</p>
-  <p>Prix : {{voucher?.price}} € </p>
-  <p>Limite : {{voucher?.limitUse}}</p>
-  </div>
+
+<div *ngIf="message">
+  <p>{{message}}</p>
+</div>
+
+
+<div class="flex flex-col justify-center mx-auto bg-light p-10 max-w-lg rounded-lg mt-20">
+<h2 class="text-center text-xl font-bold">Mon coupon</h2>
+
+    <img src="{{voucher?.image}}" alt="{{voucher?.name}}">
+  <div class="text-center">
+      <h2>{{voucher?.name}}</h2>
+      <h3>Lieu : nsm</h3>
+      <p>Promotion : {{voucher?.description}}</p>
+      <p>Période d'utilisation : {{startDate}}  - {{endDate}}</p>
+
 
 </div>
-<!-- <div class=" container mx-auto   bg-light p-10 max-w-lg rounded-lg mt-10">
-<h2 class="text-center text-xl font-bold">Mon coupon</h2>
-<div class="">
 
-  <div class="">
-    <img class="p-5 couponDetailsCard" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmGxzEe3HaPa0F5I-zKxkHAykm4bXAlMaljpFl6X7oS3m_8KS-XarneW0OudmN6K_P8Q&usqp=CAU" alt="">
-    <div class="text-center">
-      <h3>Lieu : Pokébowl</h3>
-      <p>Promotion : -30%</p>
-      <p>Date d'expiration : 10/12/2022</p>
-    </div>
-  </div>
-</div> -->
+</div>
 

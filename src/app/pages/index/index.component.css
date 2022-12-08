@@ -16,11 +16,6 @@
 background-color: #BC2C2C ;
 }
 
-.filterBar{
-  transition: 1s;
-
-}
-
 .achievement--info{
   display:flex;
   flex-flow: column;

@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { VoucherService } from 'src/app/_services/voucher.service';
+import { UserVoucherService } from 'src/app/_services/user-voucher.service';
+import { UserService } from 'src/app/_services/user.service';
 import { Voucher } from 'src/app/model/voucher.model';
 import { ToolBox } from 'src/app/utils/toolBox';
+import { UserVoucher, UserWallet } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-coupon-details',
@@ -12,44 +15,152 @@ import { ToolBox } from 'src/app/utils/toolBox';
 })
 export class CouponDetailsComponent implements OnInit {
   isMenuOpen = false;
-  title:string = 'Coupon Details';
-  isLogged:boolean = !!this.tokenStorage.getToken();
+  title: string = 'Coupon Details';
+  isLogged: boolean = !!this.tokenStorage.getToken();
   idVoucher = this.route.snapshot.paramMap.get('id');
+  id?: number;
   voucher?: Voucher;
   startDate?: string;
   endDate?: string;
-  partner?: string;
+  message?: string;
+  currentUser?: any;
+  userId?: number;
 
-  constructor(private route: ActivatedRoute, private voucherService: VoucherService, private tokenStorage: TokenStorageService, private router:Router) { }
+  constructor(private route: ActivatedRoute, private voucherService: VoucherService, private userVoucherService: UserVoucherService, private tokenStorage: TokenStorageService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    if(this.idVoucher){
-    const id = parseInt(this.idVoucher);
-    this.voucherService.getVoucher(id ,true).subscribe({
-      next: data => {
-        this.voucher = data;
-        this.startDate = ToolBox.humanReadDate(data.startDate);
-        this.endDate = ToolBox.humanReadDate(data.endDate);
-        this.getPartner(data.partnerId);
-        console.log(data);
-      },
-      error: err => {console.log(err)
-        if (err.error) {
-          console.error(JSON.parse(err.error).message);
-        } else {
-          console.error("Error with status: " + err.status);
+    if (this.idVoucher) {
+      this.id = parseInt(this.idVoucher);
+      this.voucherService.getVoucher(this.id, true).subscribe({
+        next: data => {
+          this.voucher = data;
+          this.startDate = ToolBox.humanReadDate(data.startDate);
+          this.endDate = ToolBox.humanReadDate(data.endDate);
+          console.log(data);
+        },
+        error: err => {
+          console.log(err)
+          if (err.error) {
+            console.error(JSON.parse(err.error).message);
+          } else {
+            console.error("Error with status: " + err.status);
+          }
         }
-      }
-    });
+      });
+    }
+    if (this.tokenStorage.getToken()) {
+      this.userId = this.tokenStorage.getUser().userId;
+    }
+    if(this.userId != undefined){
+      this.userService.getUserById(this.userId).subscribe({
+        next: data => {
+          this.currentUser = data;
+          console.log(data);
+        },
+        error: err => {console.log(err)
+          if (err.error) {
+            console.error(JSON.parse(err.error).message);
+          } else {
+            console.error("Error with status: " + err.status);
+          }
+        }
+      });
+    }
+
   }
+
+  buyVoucher() {
+    if (this.id && this.voucher) {
+      const userVoucherNew: UserVoucher = {
+        userId: "/api/users/" + this.userId,
+        voucherId: "/api/vouchers/" + this.id,
+        claim: 1
+      };
+      this.userVoucherService.getAllUserVoucher(true, this.id).subscribe({
+        next: data => {
+          if (data.length > 0) {
+            const { id, userId, voucherId, claim } = data[0];
+            console.log(data);
+            console.log(id, userId, voucherId.id, claim, voucherId.limitUse);
+            if (claim < voucherId.limitUse && this.voucher!.price < this.currentUser?.wallet) {
+              const userVoucher: UserVoucher = {
+                userId: userId,
+                voucherId:  "/api/vouchers/" + voucherId.id,
+                claim: claim + 1
+              }
+              console.table(userVoucher);
+              console.log(id);
+              this.userVoucherService.updateUserVoucher(id, userVoucher).subscribe({
+                next: data => {
+                  console.log(data);
+                  this.debitAccount(this.voucher!.price);
+                  this.message = "Coupon ajouté";
+                  this.router.navigate(['/profile/mes-coupons']);
+                  
+                },
+                error: err => {
+                  console.log(err)
+                  if (err.error) {
+                    console.error(JSON.parse(err.error).message);
+                  } else {
+                    console.error("Error with status: " + err.status);
+                  }
+                }
+              });
+            }
+            else {
+              console.info("limite d'utilisation atteint");
+              this.message = "limite d'utilisation atteint";
+              return;
+            }
+          } else {
+            this.userVoucherService.createUserVoucher(userVoucherNew).subscribe({
+              next: data => {
+                console.log(data);
+                this.debitAccount(this.voucher!.price);
+                this.message = "Coupon ajouté";
+                this.router.navigate(['/profile/mes-coupons']);
+              },
+              error: err => {
+                console.log(err);
+                this.message = "Coupon non ajouté";
+                if (err.error) {
+                  console.error(JSON.parse(err.error).message);
+                } else {
+                  console.error("Error with status: " + err.status);
+                }
+              }
+            });
+          }
+        },
+        error: err => {
+          console.log(err)
+          if (err.error) {
+            console.error(JSON.parse(err.error).message);
+          }
+        }
+      });
+    }
   }
-  getPartner(idRaw: string){
-    const id = ToolBox.getIdFromUrl(idRaw);
-    this.voucherService.getPartnerById(id, false).subscribe({
-      next: data => {
-        this.partner = data.name;
-      }
-    });
+
+  debitAccount(amount: number) {
+    const soustract = this.currentUser?.wallet - amount;
+    console.log(soustract);
+    if(soustract >= 0){
+      const userWallet: UserWallet = {
+        wallet: soustract,
+      };
+      this.userService.updateUserWallet(this.userId!, userWallet).subscribe({
+        next: data => {
+          console.log(data);
+          console.info("compte débité");
+        }
+      });
+    } else {
+      console.info("pas assez d'argent");
+      this.message = "pas assez d'argent";
+    }
   }
+
 
 }

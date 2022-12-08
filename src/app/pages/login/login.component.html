@@ -1,8 +1,7 @@
 <app-header-log [title]="title">test</app-header-log>
-<div class="container mx-auto bg-light p-10 max-w-lg rounded-lg mt-10 shadow-xl ">
 
+<div *ngIf="!isLoggedIn" class="container mx-auto bg-light mt-32 p-10 max-w-lg rounded-lg shadow-xl">
   <form class="flex flex-col mx-auto gap-4"
-      *ngIf="!isLoggedIn"
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
         #f="ngForm"
@@ -21,7 +20,7 @@
             role="alert"
             *ngIf="email.errors && f.submitted"
           >
-          <div class="text-error font-semibold text-center text-sm" *ngIf="email.errors['required']">L'email est obligatoire !</div>
+          <div class="text-error font-semibold text-center text-sm" *ngIf="email.errors['required']">Veuillez renseigner un email</div>
           </div>
     </div>
     <div class="mb-4 relative">
@@ -39,9 +38,9 @@
             role="alert"
             *ngIf="password.errors && f.submitted"
           >
-            <div class="text-error font-semibold text-center text-sm" *ngIf="password.errors['required']">Le mots de passe est obligatoire !</div>
+            <div class="text-error font-semibold text-center text-sm" *ngIf="password.errors['required']">Veuillez renseigner un mot de passe</div>
             <div  class="text-error font-semibold text-center text-sm" *ngIf="password.errors['minlength']">
-              Le mots de passe doit contenir au moins 8 caractères
+              Le mot de passe doit contenir au moins 8 caractères
             </div>
           </div>
     </div>
@@ -50,13 +49,14 @@
 
     <button type="submit" class="rounded  py-2 bg-primary text-light hover:bg-hover">Connexion</button>
   </form>
-
-  <div class="w-9/12 border-t-2 border-grey mx-auto my-10 flex items-center justify-center">
+  <div *ngIf="isLoginFailed" class="invalid-feedback alert alert-danger w-full mt-2" role="alert">
+    <p  class="text-error font-semibold text-center text-sm">{{errorMessage}}</p>
+  </div>
+  <div class="w-9/12 border-t-2 border-grey mx-auto mt-10 flex items-center justify-center">
     <a href="/register" class="rounded mt-5 p-3 bg-primary text-light text-center hover:bg-hover">Pas encore de compte ?</a>
   </div>
-
-  <div class="alert alert-success" *ngIf="isLoggedIn">
-    Vous êtes connecté {{ roles }}.
-  </div>
-
+</div>
+<div class="alert alert-success container mx-auto bg-light p-10 max-w-lg rounded-lg mt-28 shadow-xl text-center flex flex-col gap-4" *ngIf="isLoggedIn">
+  <p>Vous êtes connecté.</p>
+  <a href="/" class="rounded mt-5 p-3 bg-primary text-light text-center hover:bg-hover">Retour a la carte</a>
 </div>

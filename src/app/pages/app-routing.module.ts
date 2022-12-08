@@ -12,16 +12,11 @@ import { ResetpwdComponent } from './resetpwd/resetpwd.component';
 import { TosComponent } from './tos/tos.component';
 import { CouponDetailsComponent } from './coupon-details/coupon-details.component';
 import { CouponComponent } from './coupon/coupon.component';
-import { InfosComponent } from './infos/infos.component';
 import { IntroComponent } from './intro/intro.component';
 import { AuthRouterGuard } from '../_services/auth-router.guard';
-
 import {CompteComponent} from "./compte/compte.component";
-
 import { VoucherListComponent } from './voucher-list/voucher-list.component';
-import {Intro2Component} from "./intro2/intro2.component";
-import {Intro3Component} from "./intro3/intro3.component";
-import {Intro1Component} from "./intro1/intro1.component";
+
 
 
 
@@ -57,10 +52,7 @@ const routes: Routes = [
         path:'error',
         component:ErrorComponent
       },
-      {
-        path:'infos',
-        component: InfosComponent
-      },
+     
       {
         path:'coupon',
         component: CouponComponent
@@ -104,21 +96,6 @@ const routes: Routes = [
       {
         path:'intro',
         component:IntroComponent
-
-      },
-      {
-        path:'intro1',
-        component:Intro1Component
-
-      },
-      {
-        path:'intro2',
-        component:Intro2Component
-
-      },
-      {
-        path:'intro3',
-        component:Intro3Component
 
       },
       {

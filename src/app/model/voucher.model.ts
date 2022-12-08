@@ -2,7 +2,9 @@ export interface Voucher {
         id: number;
         name: string;
         description: string;
-        partnerId: string;
+        partnerId: {
+                name: string;
+        };
         image: string;
         price: number;
         limitUse: number;
