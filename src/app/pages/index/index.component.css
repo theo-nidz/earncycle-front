@@ -8,16 +8,13 @@
           user-select: none;
 }
 
-.loader--bg,.achievement--bg{
+.loader--bg,.achievement--bg,.cancel--bg{
   background-color: rgba(0, 0, 0, 0.5)
 }
 
-.goToBtn{
-  width:40px;
-  height:40px;
-  background-color:red;
+.close:hover{
+background-color: #BC2C2C ;
 }
-
 
 .filterBar{
   transition: 1s;

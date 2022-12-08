@@ -1,13 +1,6 @@
+<app-header-log [title]="title">test</app-header-log>
 
-<header>
-  <div class="flex items-center justify-between pt-5 pl-3 pr-3">
-    <a href="/login"><img  class="w-7 h-7"  src="assets/arrowBack.svg" alt=""></a>
-    <p>Inscription</p>
-    <img src="assets/verticalDots.svg" alt="">
-  </div>
-</header>
-
-<div class="container mx-auto bg-light p-10 max-w-lg rounded-lg mt-10  mb-10">
+<div class="container mx-auto bg-light shadow-xl p-10 max-w-lg rounded-lg mt-10  mb-10">
 
 <form
 *ngIf="!isSuccessful"
@@ -108,14 +101,14 @@ class="flex flex-col mx-auto gap-4">
       <div class="text-error font-semibold text-center text-sm"  *ngIf="terms.errors['required']">Veuillez Validez les conditions général</div>
     </div>
 
-  <button type="submit" class="rounded  py-2 bg-primary text-light font-bold">S'inscrire</button>
+  <button type="submit" class="rounded  py-2 bg-primary text-light font-bold hover:bg-hover">S'inscrire</button>
   <!-- TODO set style -->
   <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
     Enregistrement échoué !<br />{{ errorMessage }}
   </div>
 </form>
 <div class="w-9/12 border-t-2 border-grey mx-auto my-10 flex items-center justify-center">
-  <a href="/login" class="rounded mt-5 p-3 bg-primary text-light text-center">Déjà un compte ?</a>
+  <a href="/login" class="rounded mt-5 p-3 bg-primary text-light text-center hover:bg-hover">Déjà un compte ?</a>
 </div>
 
 

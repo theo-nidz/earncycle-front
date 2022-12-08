@@ -9,6 +9,9 @@ import { LayoutNomenuModule } from './layouts/layout-nomenu/layout-nomenu.module
 import { authInterceptorProviders } from './_helper/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { CompteComponent } from './pages/compte/compte.component';
+import { Intro2Component } from './pages/intro2/intro2.component';
+import { Intro3Component } from './pages/intro3/intro3.component';
+import { Intro1Component } from './pages/intro1/intro1.component';
 
 
 
@@ -16,6 +19,9 @@ import { CompteComponent } from './pages/compte/compte.component';
   declarations: [
     AppComponent,
     CompteComponent,
+    Intro2Component,
+    Intro3Component,
+    Intro1Component,
 
   ],
   imports: [

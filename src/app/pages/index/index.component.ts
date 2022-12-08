@@ -1,11 +1,12 @@
+import { Router } from '@angular/router';
 import { CouponDetailsComponent } from './../coupon-details/coupon-details.component';
 import { Component, createPlatform,ElementRef, OnInit, ViewChild } from '@angular/core';
-
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { TokenStorageService } from 'src/app/_services/token-storage.service'
 import { RubbishService } from 'src/app/_services/rubbish.service';
 import { UserService } from 'src/app/_services/user.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-index',
@@ -30,6 +31,8 @@ export class IndexComponent {
   userAchievementLogged=false
   errorGeoloc=false
   coins= 0
+  filterActive=false
+  cancelRoutePopup = false
 
   routing= L.Routing.control({
     waypoints: [],
@@ -55,7 +58,24 @@ export class IndexComponent {
   map : L.Map
 
 
-  constructor(private rubbishService: RubbishService,private tokenservice: TokenStorageService,private userservice: UserService) {}
+  constructor(private rubbishService: RubbishService,private tokenservice: TokenStorageService,private userservice: UserService,private Router: Router) {}
+
+  //Traduction Catégorie
+  tradCat(name:string){
+    switch(name){
+      case"Other": return "Autre"; break;
+      case"Glass":  return "Verre"; break;
+      case"Recycle":  return "Recyclage"; break;
+      case"Wood":   return "Bois"; break;
+      case"Waste":   return "Ordure ménagères"; break;
+      case"Cardboard":   return "Cartons"; break;
+      case"Metal":  return "Métail"; break;
+      case"Compost": return "Composte"; break;
+      case"Plastic":   return "Plastique"; break;
+      case"Clothes":  return "Vêtements"; break;
+    }
+    return 'Non défini'
+  }
 
   // Achievement
    userAchievement(){
@@ -125,16 +145,23 @@ export class IndexComponent {
   }
   routeTo(coord:any) {
 		this.routing.setWaypoints([this.userCoord, coord]);
+    this.isRoute=true
     if(this.getDistanceFromLatLonInKm(this.userCoord.lat,this.userCoord.lng,coord[0],coord[1]) <= 0.030){
       this.userAchievement()
     }else{
       navigator.geolocation.watchPosition((position)=>{
-        if(this.getDistanceFromLatLonInKm(position.coords.latitude,position.coords.longitude,coord[0],coord[1]) <= 0.2){
+        if(this.getDistanceFromLatLonInKm(position.coords.latitude,position.coords.longitude,coord[0],coord[1]) <= 0.2 && this.isRoute === true){
           this.userAchievement()
         }
        });
     }
 	}
+  cancelRoute(){
+    this.routing.spliceWaypoints(0,2)
+    this.isRoute=false
+    this.map.closePopup()
+    this.cancelRoutePopup = false
+  }
 // Cookie
   getCookie(name:string) {
     var cookieArr = document.cookie.split(";");
@@ -147,12 +174,18 @@ export class IndexComponent {
     return null;
   }
   checkCookie(){
-   if(this.getCookie('intro') === 'false'){
-    window.location.href = "/intro"
+   if(this.getCookie('intro') === 'false' || !this.getCookie('intro')){
+    this.Router.navigate(['intro'])
    }
   }
 
   // Gestion Menu
+  openCancelRoute(){
+    this.cancelRoutePopup = true
+  }
+  closeCancelRoute(){
+    this.cancelRoutePopup = false
+  }
   goUser(){
     this.center = this.userCoord
     this.zoom = 18
@@ -185,7 +218,7 @@ export class IndexComponent {
           popupInfo.append(
             document.createTextNode(key.nbStreet + ` `+ key.streetName),
             document.createElement('br'),
-            document.createTextNode(key.category.name),
+            document.createTextNode(this.tradCat(key.category.name)),
             document.createElement('br'),
             btnGo
             )
@@ -193,6 +226,7 @@ export class IndexComponent {
         });
         this.layers=markerCluster
         this.loading = false
+        this.filterActive = false
      })
   }
 
@@ -201,31 +235,31 @@ export class IndexComponent {
   filter(cat:string){
     this.loading = true
     const markerCluster = L.markerClusterGroup()
-    this.rubbishService.getRubbishByCategory(cat, true, false).subscribe((res:any)=>{
+    this.rubbishService.getRubbishByCategory(cat,true, false).subscribe((res:any)=>{
+      console.log(res)
+        res.forEach((key:any) => {
 
-      res.forEach((key:any) => {
-        // console.log('FOREACH',key)
-        let popupInfo = document.createElement('div')
-        popupInfo.className='popup--info'
+          let popupInfo = document.createElement('div')
+          popupInfo.className='popup--info'
 
-        let btnGo = document.createElement('button');
-        btnGo.className = 'goToBtn';
-        btnGo.append(document.createTextNode('S\'y rendre'))
-        btnGo.onclick = async () => {
-         this.routeTo([key.latitude,key.longitude])
-        }
-        popupInfo.append(
-          document.createTextNode(key.nbStreet + ` `+ key.streetName),
-          document.createElement('br'),
-          document.createTextNode(key.type),
-          document.createElement('br'),
-          btnGo
-          )
-          markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.checkIcon(key.category.name)}).bindPopup(popupInfo));
-      });
-      this.layers=markerCluster
-      this.loading = false
-
+          let btnGo = document.createElement('button');
+          btnGo.className = 'goToBtn';
+          btnGo.append(document.createTextNode('S\'y rendre'))
+          btnGo.onclick = async () => {
+           this.routeTo([key.latitude,key.longitude])
+          }
+          popupInfo.append(
+            document.createTextNode(key.nbStreet + ` `+ key.streetName),
+            document.createElement('br'),
+            document.createTextNode(this.tradCat(key.category.name)),
+            document.createElement('br'),
+            btnGo
+            )
+            markerCluster.addLayer(L.marker([key.latitude,key.longitude],{icon:this.checkIcon(key.category.name)}).bindPopup(popupInfo));
+        });
+        this.layers=markerCluster
+        this.loading = false
+        this.filterActive = true
      })
   }
 
@@ -254,16 +288,16 @@ checkIcon(cat:string){
   var Icon= this.glassBin
   // TODO: change the value name of the category related to the db
   switch(cat){
-    case"Autre": Icon = this.otherBin; break;
-    case"Verre":  Icon = this.glassBin; break;
-    case"Recyclage":  Icon = this.recycleBin; break;
-    case"Bois":  Icon = this.woodBin; break;
-    case"Ordures ménagères":  Icon = this.wasteBin; break;
-    case"Cartons":  Icon = this.cardboardBin; break;
-    case"Métal":  Icon = this.metalBin; break;
-    case"Composte": Icon = this.compostBin; break;
-    case"Plastique":  Icon = this.plasticBin; break;
-    case"Vêtements": Icon = this.clothesBin; break;
+    case"Other": Icon = this.otherBin; break;
+    case"Glass":  Icon = this.glassBin; break;
+    case"Recycling":  Icon = this.recycleBin; break;
+    case"Wood":  Icon = this.woodBin; break;
+    case"Waste":  Icon = this.wasteBin; break;
+    case"Cardboard":  Icon = this.cardboardBin; break;
+    case"Metal":  Icon = this.metalBin; break;
+    case"Compost": Icon = this.compostBin; break;
+    case"Plastic":  Icon = this.plasticBin; break;
+    case"Clothes": Icon = this.clothesBin; break;
     default: Icon = this.otherBin; break;
   }
   return Icon
@@ -324,4 +358,7 @@ userMarker = L.icon({
   iconAnchor: [20, 25],
 
 })
+
+
+
 }

@@ -15,7 +15,14 @@ import { CouponComponent } from './coupon/coupon.component';
 import { InfosComponent } from './infos/infos.component';
 import { IntroComponent } from './intro/intro.component';
 import { AuthRouterGuard } from '../_services/auth-router.guard';
+
 import {CompteComponent} from "./compte/compte.component";
+
+import { VoucherListComponent } from './voucher-list/voucher-list.component';
+import {Intro2Component} from "./intro2/intro2.component";
+import {Intro3Component} from "./intro3/intro3.component";
+import {Intro1Component} from "./intro1/intro1.component";
+
 
 
 
@@ -28,7 +35,8 @@ const routes: Routes = [
     children:[
       {
         path:'',
-        component:IndexComponent
+        redirectTo:'/index',
+        pathMatch:'full'
       },
       {
         path:'index',
@@ -57,6 +65,11 @@ const routes: Routes = [
         path:'coupon',
         component: CouponComponent
       },
+      {
+        path:'profile/mes-coupons',
+        component: VoucherListComponent,
+        canActivate: [AuthRouterGuard],
+      }
 
       // TODO create page 404
       // {path: '**', component: Page404},
@@ -91,6 +104,21 @@ const routes: Routes = [
       {
         path:'intro',
         component:IntroComponent
+
+      },
+      {
+        path:'intro1',
+        component:Intro1Component
+
+      },
+      {
+        path:'intro2',
+        component:Intro2Component
+
+      },
+      {
+        path:'intro3',
+        component:Intro3Component
 
       },
       {
