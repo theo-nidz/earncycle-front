@@ -41,16 +41,24 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/');
         this.reloadPage();
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = this.translateErrorMsg(err.error.message);
+        console.log(this.errorMessage);
         this.isLoginFailed = true;
       }
     );
   }
-
+  translateErrorMsg(error:string): string{
+    switch(error){
+      case "Invalid credentials.":
+        return "Identifiants incorrects";
+      default:
+        return "Erreur inconnue";
+    }
+  }
   reloadPage(): void {
     window.location.reload();
   }
