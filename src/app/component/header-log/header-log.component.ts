@@ -41,6 +41,6 @@ export class HeaderLogComponent implements OnInit {
     this.router.navigateByUrl('/register');
   }
   accountSetup(){
-    this.router.navigateByUrl('/mon-compte');
+    this.router.navigateByUrl('/profile/mon-compte');
   }
 }

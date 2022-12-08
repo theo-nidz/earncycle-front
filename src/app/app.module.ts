@@ -8,15 +8,13 @@ import { LayoutMenuModule } from './layouts/layout-menu/layout-menu.module';
 import { LayoutNomenuModule } from './layouts/layout-nomenu/layout-nomenu.module';
 import { authInterceptorProviders } from './_helper/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
-import { CompteComponent } from './pages/compte/compte.component';
-
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompteComponent,
+   
 
   ],
   imports: [
@@ -29,6 +27,6 @@ import { CompteComponent } from './pages/compte/compte.component';
     LeafletMarkerClusterModule,
   ],
   providers: [authInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
