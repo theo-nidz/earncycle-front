@@ -157,5 +157,8 @@ export class CouponDetailsComponent implements OnInit {
     }
   }
 
+  login(){
+    this.router.navigate(['/login']);
+  }
 
 }
