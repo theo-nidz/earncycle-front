@@ -11,6 +11,9 @@
   <p>{{voucher?.limitUse}}</p>
   <button (click)="buyVoucher()">buy</button>
 </div>
+<div *ngIf="message">
+  <p>{{message}}</p>
+</div>
 <!-- <div class=" container mx-auto   bg-light p-10 max-w-lg rounded-lg mt-10">
 <h2 class="text-center text-xl font-bold">Mon coupon</h2>
 <div class="">

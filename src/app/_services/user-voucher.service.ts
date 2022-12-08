@@ -31,7 +31,7 @@ export class UserVoucherService {
   }
 
   updateUserVoucher(idUserVoucher: number, userVoucher: UserVoucher): Observable<any> {
-    return this.http.put(this.url + '/' + idUserVoucher , userVoucher.claim, { responseType: 'json' });
+    return this.http.put(this.url + '/' + idUserVoucher , userVoucher, { responseType: 'json' });
   }
 
   deleteUserVoucher(idUserVoucher: number): Observable<any> {
