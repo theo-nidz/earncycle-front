@@ -173,3 +173,6 @@ background-color: #BC2C2C ;
  }
 }
 
+.grid-colonne{
+  grid-template-columns: 30% 70%;
+}

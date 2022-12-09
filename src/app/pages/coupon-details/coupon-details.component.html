@@ -1,9 +1,7 @@
 <app-header-log [title]="title"></app-header-log>
 
-<div class="max-w-sm sm:max-w-md bg-light border border-gray-200 rounded-lg shadow-md m-6  mt-24 mx-auto">
-  <a href="/coupon-details/{{id}}">
-      <div class="rounded-t-lg w-full h-56 bg-no-repeat bg-center bg-cover" style="background-image: url('{{voucher?.image}}');" ></div>
-  </a>
+<div class="w-3/4 sm:w-3/4 max-w-xl bg-light border border-gray-200 rounded-lg shadow-md  mt-24 mx-auto">
+  <div class="rounded-t-lg w-full h-56 bg-no-repeat bg-center bg-cover" style="background-image: url('{{voucher?.image}}');" ></div>
   <div class="p-5">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{voucher?.partnerId?.name}} - {{voucher?.name}}</h5>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{voucher?.description}}</p>
