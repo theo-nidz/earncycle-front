@@ -1,12 +1,12 @@
 <app-header-log [title]="title">test</app-header-log>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center p-4 mt-20">
-    <div *ngFor="let voucher of UserVouchers" class="rounded-md p-2 bg-gradient w-full grid grid-cols-4 gap-2 hover:bg-hover" trackby="voucher" (click)="renderVoucher(voucher) " >
-        <img class="row-span-4 rounded-lg" src="{{voucher.voucherId.image}}" alt="{{voucher.voucherId.name}}">
-        <h3 class="col-span-2 text-lg">{{voucher.voucherId.name}}</h3>
+    <div *ngFor="let voucher of UserVouchers" class="rounded-md p-2 bg-light w-full grid grid-cols-4 gap-2 hover:bg-hover border" trackby="voucher" (click)="renderVoucher(voucher) " >
+        <img class="row-span-4 rounded-lg self-center" src="{{voucher.voucherId.image}}" alt="{{voucher.voucherId.name}}">
+        <h3 class="col-span-2 text-lg font-semibold">{{voucher.voucherId.name}}</h3>
         <p>{{voucher.claim}} / {{voucher.voucherId.limitUse}}</p>
         <p class="col-span-2">{{voucher.voucherId.partnerId.name}}</p>
-        <p>{{voucher.voucherId.price}}</p>
+        <p class="flex">{{voucher.voucherId.price}} <img src="assets/coins.svg" alt="earncycle coins logo"></p>
         <p class="col-span-3 text-sm">{{voucher.voucherId.description}}</p>
         <p class="col-span-3 text-xs">Du {{voucher.voucherId.sDate}} au {{voucher.voucherId.eDate}}</p>
     </div>

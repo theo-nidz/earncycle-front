@@ -8,10 +8,10 @@
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{voucher?.partnerId?.name}} - {{voucher?.name}}</h5>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{voucher?.description}}</p>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Utilisable {{voucher?.limitUse}} fois entre les dates suivantes :<br/> {{startDate}} - {{endDate}}</p>
-      <button *ngIf="isLogged" (click)="buyVoucher()" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg bg-primary hover:bg-hover button">
+      <button *ngIf="isLogged" (click)="buyVoucher()" class="inline-flex items-center px-3 py-2 text-sm  text-center text-white bg-blue-700 rounded-lg bg-primary hover:bg-hover button  text-light font-semibold">
           Acheter pour {{voucher?.price}}  <img src="assets/coins.svg" alt="earncycle coins logo">
       </button>
-      <button *ngIf="!isLogged" (click)="login()" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg bg-primary hover:bg-hover button">
+      <button *ngIf="!isLogged" (click)="login()" class="inline-flex items-center px-3 py-2 text-sm  text-center text-white bg-blue-700 rounded-lg bg-primary hover:bg-hover button  text-light font-semibold">
           Se Connecter
       </button>
       <div *ngIf="message">

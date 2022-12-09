@@ -7,9 +7,6 @@
             </i>
             <ul class="bg-light absolute right-4 top-10 p-2 rounded flex flex-col gap-2" *ngIf="isMenuOpen">
                 <li *ngIf="isLogged">
-                    <button (click)="logout()">Déconnexion</button>
-                </li>
-                <li *ngIf="isLogged">
                     <button (click)="accountSetup()">Paramètres</button>
                 </li>
                 <li *ngIf="!isLogged">
@@ -17,6 +14,9 @@
                 </li>
                 <li *ngIf="!isLogged">
                     <button (click)="register()">Inscription</button>
+                </li>
+                <li *ngIf="isLogged">
+                    <button (click)="logout()">Déconnexion</button>
                 </li>
             </ul>
         </div>
