@@ -11,6 +11,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CouponComponent } from 'src/app/pages/coupon/coupon.component';
 import { VoucherListComponent } from 'src/app/pages/voucher-list/voucher-list.component';
 import { CompteComponent } from 'src/app/pages/compte/compte.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -31,6 +32,7 @@ import { CompteComponent } from 'src/app/pages/compte/compte.component';
     RouterModule,
     LeafletModule,
     LeafletMarkerClusterModule,
+    FormsModule
   ],
   exports:[
     SharedModule,
