@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 export class CompteComponent implements OnInit {
   id?: number;
   user?: any;
-  title: string = 'compte';
+  title: string = 'Mon Compte';
   isLogged: boolean = !!this.tokenStorage.getToken();
   form: any = {
     password: null,

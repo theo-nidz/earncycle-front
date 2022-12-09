@@ -61,11 +61,11 @@ export class IndexComponent {
   constructor(private rubbishService: RubbishService,private tokenservice: TokenStorageService,private userservice: UserService,private Router: Router) {}
 
   //Traduction Catégorie
-  tradCat(name:string){
+  tradCat(name:string): string{
     switch(name){
       case"Other": return "Autre"; break;
       case"Glass":  return "Verre"; break;
-      case"Recycle":  return "Recyclage"; break;
+      case"Recycling":  return "Recyclage"; break;
       case"Wood":   return "Bois"; break;
       case"Waste":   return "Ordure ménagères"; break;
       case"Cardboard":   return "Cartons"; break;
@@ -73,8 +73,8 @@ export class IndexComponent {
       case"Compost": return "Composte"; break;
       case"Plastic":   return "Plastique"; break;
       case"Clothes":  return "Vêtements"; break;
+      default: return "Non défini"; break;
     }
-    return 'Non défini'
   }
 
   // Achievement
