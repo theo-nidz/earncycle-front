@@ -54,6 +54,7 @@ export class VoucherListComponent implements OnInit {
     this.toggleModdal();
     console.log(voucher);
     this.voucherSelected = voucher;
+    this.qrCode = ToolBox.RandomString(10);
     // this.qrCode = ToolBox.generateQRCode(this.voucherSelected.urlCode);
     
   }
