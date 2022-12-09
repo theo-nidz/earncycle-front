@@ -1,12 +1,10 @@
 <app-header-log [title]="title"></app-header-log>
 
-<div class="container mx-auto bg-light pt-20 py-10 pb-10 max-w-lg rounded-lg mt-10 mb-10">
+<div class="container mx-auto  max-w-lg  my-20 z-0 ">
 
+  <form class="flex flex-col mx-auto gap-4  bg-light rounded-lg p-7" (ngSubmit)="onSubmit() " novalidate #f="ngForm">
 
-
-  <form class="flex flex-col mx-auto gap-4" (ngSubmit)="onSubmit() " novalidate #f="ngForm">
-
-    <div class="mb-4 relative">
+    <div class="relative">
       <label for="nickname" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Nom d'utilisateur</label>
       <input
         class="form-control"
@@ -18,7 +16,7 @@
       <div class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full">
       </div>
     </div>
-    <div class="mb-4 relative">
+    <div class="relative">
       <label for="lname" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Nom de famille</label>
       <input
         class="form-control"
@@ -30,7 +28,7 @@
       <div class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full">
       </div>
     </div>
-    <div class="mb-4 relative">
+    <div class="relative">
       <label for="fname" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Prénom</label>
       <input
         class="form-control"
@@ -43,7 +41,7 @@
       </div>
     </div>
 
-    <div class="mb-4 relative">
+    <div class="relative">
       <label for="phone" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Téléphone</label>
       <input
         class="form-control"
@@ -56,7 +54,7 @@
       </div>
     </div>
 
-    <div class="mb-4 relative">
+    <div class="relative">
       <label for="adress" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Adresse</label>
       <input
         class="form-control"
@@ -69,7 +67,7 @@
       </div>
     </div>
 
-    <div class="mb-4 relative">
+    <div class="relative">
       <label for="password" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Mot de passe</label>
       <input
         class="form-control"
@@ -81,7 +79,7 @@
       <div class="invalid-feedback alert alert-danger absolute top-full -bottom-6 left-1/2 transform -translate-x-1/2 w-full">
       </div>
     </div>
-    <div class="mb-4 relative">
+    <div class="relative">
       <label for="confirmPassword" class="font-bold block mb-2 text-sm text-gray-900 dark:text-gray-300">Confirmer le mot de passe</label>
       <input
         class="form-control"
@@ -94,8 +92,8 @@
       </div>
     </div>
 
-    <div class="w-9/12  mx-auto my-10 flex items-center justify-center">
-      <button type="submit" class="rounded mt-5 p-3 bg-primary text-light text-center">Enregistrer</button>
+    <div class="mx-auto text-center">
+      <button type="submit" class="rounded p-3 bg-primary text-light text-center">Enregistrer</button>
     </div>
   </form>
 
